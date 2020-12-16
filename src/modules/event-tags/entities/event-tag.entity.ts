@@ -43,7 +43,7 @@ export class EventTagEntity {
   @Column()
   relationId: string;
 
-  @Index() // TODO: почему?
+  // @Index() // TODO: почему?
   @Column()
   relationType: TagRelationType;
 

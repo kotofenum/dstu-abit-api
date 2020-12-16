@@ -1,3 +1,4 @@
+import { registerEnumType } from "@nestjs/graphql";
 import { ProgramEntity } from "src/modules/programs/entities/program.entity";
 import { SpecialtyEntity } from "src/modules/specialties/entities/specialty.entity";
 import {
@@ -12,6 +13,19 @@ import {
   JoinColumn,
 } from "typeorm";
 
+export enum PlacesMeta {
+  unobtainable = "unobtainable",
+  undeveloped = "undeveloped",
+  hasDegree = "hasDegree",
+  secondaryMajor = "secondaryMajor",
+  shortTerm = "shortTerm",
+  unknown = "unknown"
+}
+
+registerEnumType(PlacesMeta, {
+  name: "PlacesMeta",
+})
+
 @Entity("majors")
 export class MajorEntity {
   @PrimaryGeneratedColumn("uuid") uid: string;
@@ -22,8 +36,23 @@ export class MajorEntity {
   @Column({ unique: true })
   code: string;
 
-  @Column()
-  fundedPlaces: number;
+  @Column({ nullable: true})
+  fullTimePlaces: number;
+
+  @Column({ nullable: true})
+  fullTimeMeta: PlacesMeta;
+
+  @Column({ nullable: true})
+  mixedPlaces: number;
+
+  @Column({ nullable: true})
+  mixedMeta: PlacesMeta;
+
+  @Column({ nullable: true})
+  extramuralPlaces: number;
+
+  @Column({ nullable: true})
+  extramuralMeta: PlacesMeta;
 
   @OneToMany(
     () => SpecialtyEntity,

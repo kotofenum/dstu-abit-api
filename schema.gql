@@ -174,7 +174,17 @@ type MajorDto {
   uid: String!
   title: String!
   code: String!
-  fundedPlaces: Float!
+  fullTimePlaces: Float!
+  fullTimeMeta: PlacesMeta!
+}
+
+enum PlacesMeta {
+  unobtainable
+  undeveloped
+  hasDegree
+  secondaryMajor
+  shortTerm
+  unknown
 }
 
 type SpecialtyDto {

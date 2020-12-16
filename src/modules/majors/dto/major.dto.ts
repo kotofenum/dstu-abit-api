@@ -1,4 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql";
+import { PlacesMeta } from "../entities/major.entity";
 
 @ObjectType()
 export class MajorDto {
@@ -12,5 +13,8 @@ export class MajorDto {
   readonly code: string;
 
   @Field()
-  readonly fundedPlaces: number;
+  readonly fullTimePlaces: number;
+
+  @Field(() => PlacesMeta)
+  readonly fullTimeMeta: PlacesMeta;
 }

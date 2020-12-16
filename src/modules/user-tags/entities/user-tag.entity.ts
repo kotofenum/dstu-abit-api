@@ -32,7 +32,7 @@ export class UserTagEntity {
   @Column()
   relationId: string;
 
-  @Index() // TODO: почему?
+  // @Index() // TODO: почему?
   @Column()
   relationType: TagRelationType;
 
