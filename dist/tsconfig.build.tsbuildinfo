@@ -5540,14 +5540,29 @@
         "signature": "82973ff82863293edd2dcf09fcebd4ccc579b4be4c5b94cde6e0ba4431fd8e7e",
         "affectsGlobalScope": false
       },
+      "../src/modules/events/entities/event.entity.ts": {
+        "version": "d2d7103ecab79739e7013f51a3ecda022a58ca5f0f5ebde446517638b9b1073c",
+        "signature": "5dff1d50567beeea02e1e37e9e4c9e18b1340dd9ed2e6824915f4cf05d2f50cd",
+        "affectsGlobalScope": false
+      },
       "../src/modules/user-tags/entities/user-tag.entity.ts": {
         "version": "73ca2326e5803b7aa0b98b78749fa6cceb42292ca417984a107f732472a5c052",
         "signature": "1c24b98c2d8a5d50bd7f7aa18a7371170f1b64440bb18921e85aee8602493eff",
         "affectsGlobalScope": false
       },
+      "../src/modules/event-tags/entities/event-tag.entity.ts": {
+        "version": "5b4aa76a5598795eb60aafad5672b53ac7f6d3131c9b23ef1b3ad949f19c370f",
+        "signature": "cdce964c34c1b9df6be5653519f6dd6dcd3657ed3951e303c94d0d7590a0247b",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/entities/code.entity.ts": {
+        "version": "3188320292a330f40589a925cba8fda5b8a28c1582db4c48c6f2f5668431d3fd",
+        "signature": "8369a424b587b129ab457ff4f1734cfc4a4d0a0e802bd0e6a0ecbc78829dde91",
+        "affectsGlobalScope": false
+      },
       "../src/modules/users/entities/user.entity.ts": {
-        "version": "a3a3af722e5921d99e5c1ce0240d412702cb9533d45a9b071bb3c3819b6b34e8",
-        "signature": "575a9c609d43acb9dae77e229a53346e98684c392a023c1add2d1f8ea41432eb",
+        "version": "4c27669b448d6aef4f16d9446bcdc3f908bc9d7bbcf62c7c97e2f12bc6cde274",
+        "signature": "e196f4e36bab4ea4183cd7b0d2a3421680a6f9700c972bf37fb63a9d28aae70c",
         "affectsGlobalScope": false
       },
       "../src/modules/users/inputs/user.input.ts": {
@@ -5585,9 +5600,44 @@
         "signature": "a484689a0d2f8c88707d6cb7ecc6cf2fde7e7686de6496e69a409a6d9c9c28ef",
         "affectsGlobalScope": false
       },
+      "../src/modules/users/inputs/create-user.input.ts": {
+        "version": "7a68950806544e2086bee163d1a5a1df15308d9b22e06beab0b98f96f436e209",
+        "signature": "1319a217019448d63325e17b68047335ca4d61c3b7554d243e76d78554f29072",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/graphql-type-json/lib/index.d.ts": {
+        "version": "0c0386d7fbf46aa7b737473131d3d8263220363ae1b3a3d0c67a32a1f5662391",
+        "signature": "0c0386d7fbf46aa7b737473131d3d8263220363ae1b3a3d0c67a32a1f5662391",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/inputs/code.input.ts": {
+        "version": "98e39e8d6416d1877d755033c6b413d8d689bf8bb531a722aa1324acca94db66",
+        "signature": "ca4aa8b6d953728c628bcace8a0be77c85ec9300ecad9c4d2641d0ca8f183cd5",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/inputs/confirm-code.input.ts": {
+        "version": "794341a4f486414f417ae073e2c5dc62e80d86350231800c4772528487d8a158",
+        "signature": "4108bbe1bbb9c5f8dbc01f321b336235337f47923ca6c52ccc241275650d2826",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/inputs/login.input.ts": {
+        "version": "e205cc015d84de356f9e718762bc8009d534044867edf67feda0405229edd488",
+        "signature": "f908ef5d231a48f82a545c033bb86aac68e641fa068f315f331ab5af479c20ab",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/codes.service.ts": {
+        "version": "126233dfc910b294a99678d81057cd301155241a455e0e18596729292f0beca0",
+        "signature": "cd8cc566dd68a7f8832967394bee3c098dc7254d5531ae826f5202063a2306ee",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/users/inputs/update-user.input.ts": {
+        "version": "a082b39464daa6006ac25a1f7b36691439dd1c41be1aa6bdd21b85a2a260c35b",
+        "signature": "8c4580b04d56f5d3f9ea4fd50206b899a6a19e8abf4297505c68c7b21c23265e",
+        "affectsGlobalScope": false
+      },
       "../src/modules/users/users.service.ts": {
-        "version": "1685cc68ca70100c5cc47a22de9ff212d5308f4d89428984bdf56a2d17c598db",
-        "signature": "89a98d633ea3f53ad90d642c28e1f29b490dc073f5014b0f1e8cb835eb439715",
+        "version": "3bc7d9c5564f066432ed451e241b07329466a8dd6ea3583ce92a366ed78501c6",
+        "signature": "b0f68074c0f491d3c1feb3399c073a731bc26bfa10a980c3c0d0f53234f60f42",
         "affectsGlobalScope": false
       },
       "../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts": {
@@ -5616,7 +5666,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/auth/auth.service.ts": {
-        "version": "02359783aca5f735f175c68282945bbb7e29f3d5214eba5422b37ef03ff49318",
+        "version": "f5c0053ee699c3e9fd727b0482543075cbf5a7c0a83127fbf2a70b532538a76b",
         "signature": "8a0343043a9f9b2b57fd0c12c8620265bb879f80d778467f99538b44487c47ce",
         "affectsGlobalScope": false
       },
@@ -5691,8 +5741,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/users/dto/user.dto.ts": {
-        "version": "d4071de4e4b9381df692a4d16d0991904a9f3a123b16109c4fb4c92451aa69f6",
-        "signature": "b927cdb697ef0075b6e3641bcca7853c06f77aae7ff268b011487fa2d35287b9",
+        "version": "e0b48b928d46f81d42968fa74a8adc6cf5bf129cd1062e117d07c47373b644f1",
+        "signature": "79e74e9ae2e2d8b411af437f8d182db1375791b7113617246fca487c8cec9c91",
         "affectsGlobalScope": false
       },
       "../src/guards/auth.guard.ts": {
@@ -5741,8 +5791,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/users/users.resolver.ts": {
-        "version": "2d04016c025c180a2f8c8a3af44e2de0e5a504045306d81e217e942394a45b32",
-        "signature": "47e687b96c49d9f04ca11eb023d160244caa4fc17dad488810c6ce66c33e0289",
+        "version": "5d25df37051a69f9bca98b65bbcf6c96f902d4d82bd9d44ea9a0135aa81a2c44",
+        "signature": "9e747c2f140233f4798538487456403e8f28fd14d54f9f4353cc4e92b131eec5",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/passport-strategy/index.d.ts": {
@@ -5775,8 +5825,28 @@
         "signature": "a28b5c0c372fb375910b3fe3c3ce4331509bc18ccef7cc39c9ee9d8daf8225d1",
         "affectsGlobalScope": false
       },
+      "../src/modules/codes/dto/code.dto.ts": {
+        "version": "19397c89a2872ed126934bfd3b2782f593bbf4729ebb0f10ba4ce07df746592d",
+        "signature": "6bfa8193d25726a92258efe6a3c9437f90ae24f9a646ddcedc0a2b48483f2083",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/dto/access.ts": {
+        "version": "e2829de238265ef79e9dd8bcb97835ac19603b8bc6c1b247f514e6e657b5c9d0",
+        "signature": "28db5529ddd14e7eabb4d4c9553ef4e17c430274ec8252856f5e86997cf0ff34",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/codes.resolver.ts": {
+        "version": "c42d44f411fbd10c3af3c3ff95343b166c79bfb24e6176d6380764b6b9768ba0",
+        "signature": "2b8d2f75db45618990e2c0f91fd215cf39a982c6eff0fce594b3b453ded44c66",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/codes/codes.module.ts": {
+        "version": "628461a1575c4f7e23efa04aead44004161a98eb36b17476d66c81208f557170",
+        "signature": "133df2bde62bb64e46be8faf52b7fef9a10710eb6d3c41c5c3b9e971dca99e15",
+        "affectsGlobalScope": false
+      },
       "../src/modules/users/users.module.ts": {
-        "version": "234f9fac0fa1e623f5a9344a75db58d04b459eed6328312e02c9ebcfccb29863",
+        "version": "03d1e32c29b092386445fef0ab65a9564cc56a1326031d309284e7139b507fdc",
         "signature": "aa1725e38b5a0b4009f6a74f296f173e7926c119a60454dbd2e523861735df69",
         "affectsGlobalScope": false
       },
@@ -5833,11 +5903,6 @@
       "../src/modules/challenge-exercises/challenge-exercises.service.ts": {
         "version": "590cbb06e22c3c127365562815cdefc9dda69816b53cbd139734847891dc7f9b",
         "signature": "eb6d4f50478b859186826e8826e42bf970810ca46f2edb3828741ff4162c0b20",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/graphql-type-json/lib/index.d.ts": {
-        "version": "0c0386d7fbf46aa7b737473131d3d8263220363ae1b3a3d0c67a32a1f5662391",
-        "signature": "0c0386d7fbf46aa7b737473131d3d8263220363ae1b3a3d0c67a32a1f5662391",
         "affectsGlobalScope": false
       },
       "../src/modules/challenges/dto/challenge.dto.ts": {
@@ -6090,16 +6155,6 @@
         "signature": "6767447a32f363d52786b8f5016d6b10338c4c53a4ee6ffb8428b85009a1f61c",
         "affectsGlobalScope": false
       },
-      "../src/modules/event-tags/entities/event-tag.entity.ts": {
-        "version": "5b4aa76a5598795eb60aafad5672b53ac7f6d3131c9b23ef1b3ad949f19c370f",
-        "signature": "cdce964c34c1b9df6be5653519f6dd6dcd3657ed3951e303c94d0d7590a0247b",
-        "affectsGlobalScope": false
-      },
-      "../src/modules/events/entities/event.entity.ts": {
-        "version": "d2d7103ecab79739e7013f51a3ecda022a58ca5f0f5ebde446517638b9b1073c",
-        "signature": "5dff1d50567beeea02e1e37e9e4c9e18b1340dd9ed2e6824915f4cf05d2f50cd",
-        "affectsGlobalScope": false
-      },
       "../src/modules/events/inputs/event.input.ts": {
         "version": "0eece945737f6d24d779ed0782392234d7eb271b833b658d88283ac2ddc33118",
         "signature": "0541a7a580618e2fd6cb4d08e3c2fffc7a79dafad84134050f681ba512f61636",
@@ -6291,7 +6346,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/app.module.ts": {
-        "version": "c6bf5bcda2684cef67d220ccf35a298db2b1eff585e8656f2f3887a1562b1c2e",
+        "version": "0ca798814c48e4ba78152f4d606bacc0eabad805283a4337747f78d90ff302f5",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644",
         "affectsGlobalScope": false
       },
@@ -12542,6 +12597,7 @@
         "../src/modules/challenge-exercises/challenge-exercises.module.ts",
         "../src/modules/challenge-passes/challenge-passes.module.ts",
         "../src/modules/challenges/challenges.module.ts",
+        "../src/modules/codes/codes.module.ts",
         "../src/modules/event-tags/event-tags.module.ts",
         "../src/modules/events/events.module.ts",
         "../src/modules/exercise-origins/exercise-origins.module.ts",
@@ -12768,6 +12824,75 @@
         "../node_modules/@nestjs/graphql/index.d.ts",
         "../node_modules/graphql-type-json/lib/index.d.ts",
         "../src/proto/challenge.ts"
+      ],
+      "../src/modules/codes/codes.module.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/guards/auth.guard.ts",
+        "../src/modules/auth/auth.module.ts",
+        "../src/modules/codes/codes.resolver.ts",
+        "../src/modules/codes/codes.service.ts",
+        "../src/modules/codes/entities/code.entity.ts",
+        "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/users.module.ts",
+        "../src/modules/users/users.service.ts"
+      ],
+      "../src/modules/codes/codes.resolver.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../src/decorators/auth-user.decorator.ts",
+        "../src/guards/auth.guard.ts",
+        "../src/modules/codes/codes.service.ts",
+        "../src/modules/codes/dto/access.ts",
+        "../src/modules/codes/dto/code.dto.ts",
+        "../src/modules/codes/entities/code.entity.ts",
+        "../src/modules/codes/inputs/code.input.ts",
+        "../src/modules/codes/inputs/confirm-code.input.ts",
+        "../src/modules/codes/inputs/login.input.ts",
+        "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/users.service.ts"
+      ],
+      "../src/modules/codes/codes.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../node_modules/typeorm/index.d.ts",
+        "../src/modules/auth/auth.service.ts",
+        "../src/modules/codes/entities/code.entity.ts",
+        "../src/modules/codes/inputs/code.input.ts",
+        "../src/modules/codes/inputs/confirm-code.input.ts",
+        "../src/modules/codes/inputs/login.input.ts",
+        "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/users.service.ts"
+      ],
+      "../src/modules/codes/dto/access.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../src/modules/users/dto/user.dto.ts"
+      ],
+      "../src/modules/codes/dto/code.dto.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../src/modules/users/dto/user.dto.ts"
+      ],
+      "../src/modules/codes/entities/code.entity.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/modules/challenge-exercises/entities/challenge-exercise.entity.ts",
+        "../src/modules/challenge-passes/entities/challenge-pass.entity.ts",
+        "../src/modules/event-tags/entities/event-tag.entity.ts",
+        "../src/modules/user-trainings/entities/user-training.entity.ts",
+        "../src/modules/users/entities/user.entity.ts",
+        "../src/proto/challenge.ts"
+      ],
+      "../src/modules/codes/inputs/code.input.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../node_modules/graphql-type-json/lib/index.d.ts",
+        "../src/modules/users/entities/user.entity.ts"
+      ],
+      "../src/modules/codes/inputs/confirm-code.input.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../node_modules/graphql-type-json/lib/index.d.ts"
+      ],
+      "../src/modules/codes/inputs/login.input.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../node_modules/graphql-type-json/lib/index.d.ts"
       ],
       "../src/modules/event-tags/dto/connected-event-tags.dto.ts": [
         "../node_modules/@nestjs/graphql/index.d.ts",
@@ -13311,18 +13436,29 @@
         "../src/proto/challenge.ts"
       ],
       "../src/modules/users/dto/user.dto.ts": [
-        "../node_modules/@nestjs/graphql/index.d.ts"
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../src/modules/users/entities/user.entity.ts"
       ],
       "../src/modules/users/entities/user.entity.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/modules/challenge-passes/entities/challenge-pass.entity.ts",
+        "../src/modules/codes/entities/code.entity.ts",
         "../src/modules/exercise-origins/entities/exercise-origin.entity.ts",
         "../src/modules/user-tags/entities/user-tag.entity.ts",
         "../src/modules/user-trainings/entities/user-training.entity.ts",
         "../src/modules/wallets/entities/wallet.entity.ts"
       ],
+      "../src/modules/users/inputs/create-user.input.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../src/modules/users/entities/user.entity.ts"
+      ],
       "../src/modules/users/inputs/deposit-funds.input.ts": [
         "../node_modules/@nestjs/graphql/index.d.ts"
+      ],
+      "../src/modules/users/inputs/update-user.input.ts": [
+        "../node_modules/@nestjs/graphql/index.d.ts",
+        "../src/modules/users/entities/user.entity.ts"
       ],
       "../src/modules/users/inputs/user.input.ts": [
         "../node_modules/@nestjs/graphql/index.d.ts"
@@ -13336,6 +13472,7 @@
         "../node_modules/@nestjs/typeorm/index.d.ts",
         "../src/guards/auth.guard.ts",
         "../src/modules/auth/auth.module.ts",
+        "../src/modules/codes/codes.module.ts",
         "../src/modules/transactions/entities/transaction.entity.ts",
         "../src/modules/transactions/transactions.service.ts",
         "../src/modules/users/entities/user.entity.ts",
@@ -13356,7 +13493,9 @@
         "../src/modules/transactions/transactions.service.ts",
         "../src/modules/users/dto/user.dto.ts",
         "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/inputs/create-user.input.ts",
         "../src/modules/users/inputs/deposit-funds.input.ts",
+        "../src/modules/users/inputs/update-user.input.ts",
         "../src/modules/users/inputs/user.input.ts",
         "../src/modules/users/inputs/withdraw-funds.input.ts",
         "../src/modules/users/users.service.ts",
@@ -13369,7 +13508,11 @@
         "../node_modules/@nestjs/typeorm/index.d.ts",
         "../node_modules/jwks-rsa/index.d.ts",
         "../node_modules/typeorm/index.d.ts",
+        "../src/modules/codes/codes.service.ts",
+        "../src/modules/codes/entities/code.entity.ts",
         "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/inputs/create-user.input.ts",
+        "../src/modules/users/inputs/update-user.input.ts",
         "../src/modules/users/inputs/user.input.ts"
       ],
       "../src/modules/wallets/dto/wallet.dto.ts": [
@@ -18925,6 +19068,36 @@
       "../src/modules/challenges/inputs/challenge.input.ts": [
         "../src/proto/challenge.ts"
       ],
+      "../src/modules/codes/codes.resolver.ts": [
+        "../src/modules/codes/codes.service.ts",
+        "../src/modules/codes/dto/access.ts",
+        "../src/modules/codes/dto/code.dto.ts",
+        "../src/modules/codes/inputs/code.input.ts",
+        "../src/modules/codes/inputs/confirm-code.input.ts",
+        "../src/modules/codes/inputs/login.input.ts",
+        "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/users.service.ts"
+      ],
+      "../src/modules/codes/codes.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/typeorm/index.d.ts",
+        "../src/modules/auth/auth.service.ts",
+        "../src/modules/codes/entities/code.entity.ts",
+        "../src/modules/codes/inputs/code.input.ts",
+        "../src/modules/codes/inputs/confirm-code.input.ts",
+        "../src/modules/codes/inputs/login.input.ts",
+        "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/users.service.ts"
+      ],
+      "../src/modules/codes/dto/code.dto.ts": [
+        "../src/modules/users/dto/user.dto.ts"
+      ],
+      "../src/modules/codes/entities/code.entity.ts": [
+        "../src/modules/users/entities/user.entity.ts"
+      ],
+      "../src/modules/codes/inputs/code.input.ts": [
+        "../src/modules/users/entities/user.entity.ts"
+      ],
       "../src/modules/event-tags/dto/connected-event-tags.dto.ts": [
         "../src/modules/majors/dto/major.dto.ts",
         "../src/modules/programs/dto/program.dto.ts",
@@ -19159,20 +19332,28 @@
         "../src/modules/user-trainings/inputs/user-training.input.ts",
         "../src/modules/users/entities/user.entity.ts"
       ],
+      "../src/modules/users/dto/user.dto.ts": [
+        "../src/modules/users/entities/user.entity.ts"
+      ],
       "../src/modules/users/entities/user.entity.ts": [
         "../src/modules/challenge-passes/entities/challenge-pass.entity.ts",
+        "../src/modules/codes/entities/code.entity.ts",
         "../src/modules/exercise-origins/entities/exercise-origin.entity.ts",
         "../src/modules/user-tags/entities/user-tag.entity.ts",
         "../src/modules/user-trainings/entities/user-training.entity.ts",
         "../src/modules/wallets/entities/wallet.entity.ts"
+      ],
+      "../src/modules/users/inputs/create-user.input.ts": [
+        "../src/modules/users/entities/user.entity.ts"
       ],
       "../src/modules/users/users.resolver.ts": [
         "../src/modules/transactions/dto/transaction.dto.ts",
         "../src/modules/transactions/transactions.service.ts",
         "../src/modules/users/dto/user.dto.ts",
         "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/inputs/create-user.input.ts",
         "../src/modules/users/inputs/deposit-funds.input.ts",
-        "../src/modules/users/inputs/user.input.ts",
+        "../src/modules/users/inputs/update-user.input.ts",
         "../src/modules/users/inputs/withdraw-funds.input.ts",
         "../src/modules/users/users.service.ts",
         "../src/modules/wallets/wallets.service.ts"
@@ -19180,6 +19361,8 @@
       "../src/modules/users/users.service.ts": [
         "../node_modules/typeorm/index.d.ts",
         "../src/modules/users/entities/user.entity.ts",
+        "../src/modules/users/inputs/create-user.input.ts",
+        "../src/modules/users/inputs/update-user.input.ts",
         "../src/modules/users/inputs/user.input.ts"
       ],
       "../src/modules/wallets/dto/wallet.dto.ts": [
@@ -20565,6 +20748,15 @@
       "../src/modules/challenges/dto/challengewithexercises.dto.ts",
       "../src/modules/challenges/entities/challenge.entity.ts",
       "../src/modules/challenges/inputs/challenge.input.ts",
+      "../src/modules/codes/codes.module.ts",
+      "../src/modules/codes/codes.resolver.ts",
+      "../src/modules/codes/codes.service.ts",
+      "../src/modules/codes/dto/access.ts",
+      "../src/modules/codes/dto/code.dto.ts",
+      "../src/modules/codes/entities/code.entity.ts",
+      "../src/modules/codes/inputs/code.input.ts",
+      "../src/modules/codes/inputs/confirm-code.input.ts",
+      "../src/modules/codes/inputs/login.input.ts",
       "../src/modules/event-tags/dto/connected-event-tags.dto.ts",
       "../src/modules/event-tags/dto/user-tag.dto.ts",
       "../src/modules/event-tags/entities/event-tag.entity.ts",
@@ -20634,7 +20826,9 @@
       "../src/modules/user-trainings/user-trainings.service.ts",
       "../src/modules/users/dto/user.dto.ts",
       "../src/modules/users/entities/user.entity.ts",
+      "../src/modules/users/inputs/create-user.input.ts",
       "../src/modules/users/inputs/deposit-funds.input.ts",
+      "../src/modules/users/inputs/update-user.input.ts",
       "../src/modules/users/inputs/user.input.ts",
       "../src/modules/users/inputs/withdraw-funds.input.ts",
       "../src/modules/users/users.module.ts",

@@ -29,6 +29,7 @@ const auth_module_1 = require("./auth/auth.module");
 const programs_module_1 = require("./programs/programs.module");
 const user_tags_module_1 = require("./user-tags/user-tags.module");
 const event_tags_module_1 = require("./event-tags/event-tags.module");
+const codes_module_1 = require("./codes/codes.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -59,6 +60,7 @@ AppModule = __decorate([
             programs_module_1.ProgramsModule,
             user_tags_module_1.UserTagsModule,
             event_tags_module_1.EventTagsModule,
+            codes_module_1.CodesModule,
             auth_module_1.AuthModule
         ],
         controllers: [app_controller_1.AppController],

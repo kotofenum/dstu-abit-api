@@ -31,6 +31,48 @@ let UsersService = class UsersService {
             picture: data.picture,
         });
     }
+    async updateUser(data, user) {
+        user.firstName = data.firstName;
+        user.lastName = data.lastName;
+        user.patronym = data.patronym;
+        user.birthDate = data.birthDate;
+        user.country = data.country;
+        user.locality = data.locality;
+        user.email = data.email;
+        user.pwd = data.pwd;
+        if (data.school) {
+            user.school = data.school;
+        }
+        if (data.position) {
+            user.position = data.position;
+        }
+        if (data.child) {
+            user.child = data.child;
+        }
+        if (data.course) {
+            user.course = data.course;
+        }
+        return await this.usersRepository.save(user);
+    }
+    async confirmUser(user) {
+        user.phoneVerified = true;
+        return await this.usersRepository.save(user);
+    }
+    async upsertUser(data) {
+        const user = await this.usersRepository.findOne({
+            where: { phone: data.phone },
+        });
+        if (!user) {
+            const newUser = await this.usersRepository.save({
+                phone: data.phone,
+                type: data.type,
+            });
+            return newUser;
+        }
+        else {
+            return user;
+        }
+    }
     async getUsers() {
         return await this.usersRepository.find();
     }

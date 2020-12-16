@@ -47,7 +47,11 @@ let AuthService = class AuthService {
     async validateToken(token) {
         try {
             const res = this.jwtService.verify(token);
+            console.log(res);
             const user = await this.usersService.getUserById(res["sub"]);
+            if (!user) {
+                throw Error;
+            }
             return { user, isValid: true };
         }
         catch (e) {

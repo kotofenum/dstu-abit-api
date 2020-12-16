@@ -1,4 +1,6 @@
+import { registerEnumType } from "@nestjs/graphql";
 import { ChallengePassEntity } from "src/modules/challenge-passes/entities/challenge-pass.entity";
+import { CodeEntity } from "src/modules/codes/entities/code.entity";
 import { ExerciseOriginEntity } from "src/modules/exercise-origins/entities/exercise-origin.entity";
 import { UserTagEntity } from "src/modules/user-tags/entities/user-tag.entity";
 import { UserTrainingEntity } from "src/modules/user-trainings/entities/user-training.entity";
@@ -15,24 +17,33 @@ import {
   JoinColumn,
 } from "typeorm";
 
+
+export enum AccountType {
+  enrolee = "enrolee",
+  parent = "parent",
+  teacher = "teacher",
+}
+
+registerEnumType(AccountType, {
+  name: "AccountType",
+})
+
 @Entity("users")
 export class UserEntity {
   @PrimaryGeneratedColumn("uuid") uid: string;
 
-  @Index()
-  @Column({
-    unique: true,
-  })
-  oauthId: string;
-
-  @Column("varchar", { length: 100 })
+  @Column("varchar", { length: 100, nullable: true })
   firstName: string;
 
-  @Column("varchar", { length: 100 })
+  @Column("varchar", { length: 100, nullable: true })
   lastName: string;
 
   @Column("varchar", { length: 100, nullable: true }) // TODO: временно
   patronym: string;
+
+  // @Index()
+  @Column()
+  type: AccountType;
 
   @Column({ nullable: true }) // TODO: временно
   birthDate: Date;
@@ -58,10 +69,13 @@ export class UserEntity {
   // @Column('varchar', { length: 100 })
   // username: string;
 
-  @Column()
+  @Column({ nullable: true })
   email: string;
 
-  @Column({ nullable: true }) // TODO: временно
+  @Column({ nullable: true })
+  school: string;
+
+  @Column({ nullable: false }) // TODO: временно
   phone: string;
 
   @Index()
@@ -76,7 +90,7 @@ export class UserEntity {
   })
   phoneVerified: boolean;
 
-  @Column()
+  @Column({ nullable: true })
   picture: string;
 
   @OneToMany(
@@ -128,6 +142,16 @@ export class UserEntity {
   )
   @JoinColumn()
   tags: UserTagEntity[];
+
+  @OneToMany(
+    () => CodeEntity,
+    (code) => code.issuer,
+    {
+      cascade: true,
+    }
+  )
+  @JoinColumn()
+  codes: CodeEntity[];
 
   @CreateDateColumn()
   dateCreated: Date;

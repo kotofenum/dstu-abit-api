@@ -17,7 +17,6 @@ const users_service_1 = require("./users.service");
 const user_entity_1 = require("./entities/user.entity");
 const graphql_1 = require("@nestjs/graphql");
 const user_dto_1 = require("./dto/user.dto");
-const user_input_1 = require("./inputs/user.input");
 const auth_guard_1 = require("../../guards/auth.guard");
 const common_1 = require("@nestjs/common");
 const auth_user_decorator_1 = require("../../decorators/auth-user.decorator");
@@ -29,6 +28,8 @@ const withdraw_funds_input_1 = require("./inputs/withdraw-funds.input");
 const transaction_entity_1 = require("../transactions/entities/transaction.entity");
 const main_1 = require("../../main");
 const wallet_dto_1 = require("../wallets/dto/wallet.dto");
+const create_user_input_1 = require("./inputs/create-user.input");
+const update_user_input_1 = require("./inputs/update-user.input");
 let UsersResolver = class UsersResolver {
     constructor(usersService, walletsService, transactionsService) {
         this.usersService = usersService;
@@ -41,13 +42,11 @@ let UsersResolver = class UsersResolver {
     async user(uid) {
         return this.usersService.getUserById(uid);
     }
-    async addUser(input, user) {
-        if (!user) {
-            return this.usersService.createUser(input);
-        }
-        else {
-            return user;
-        }
+    async createUser(input) {
+        return this.usersService.upsertUser(input);
+    }
+    async updateUser(input, user) {
+        return this.usersService.updateUser(input, user);
     }
     async depositFunds(input, user) {
         const wallets = await this.walletsService.getUserWallets(user);
@@ -92,14 +91,21 @@ __decorate([
 ], UsersResolver.prototype, "user", null);
 __decorate([
     graphql_1.Mutation(() => user_dto_1.UserDto),
+    __param(0, graphql_1.Args("input")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_input_1.CreateUserInput]),
+    __metadata("design:returntype", Promise)
+], UsersResolver.prototype, "createUser", null);
+__decorate([
+    graphql_1.Mutation(() => user_dto_1.UserDto),
     common_1.UseGuards(auth_guard_1.AuthGuard),
     __param(0, graphql_1.Args("input")),
     __param(1, auth_user_decorator_1.AuthUser()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_input_1.UserInput,
+    __metadata("design:paramtypes", [update_user_input_1.UpdateUserInput,
         user_entity_1.UserEntity]),
     __metadata("design:returntype", Promise)
-], UsersResolver.prototype, "addUser", null);
+], UsersResolver.prototype, "updateUser", null);
 __decorate([
     graphql_1.Mutation(() => transaction_dto_1.TransactionDto),
     common_1.UseGuards(auth_guard_1.AuthGuard),

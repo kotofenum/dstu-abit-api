@@ -10,6 +10,7 @@ import { WalletEntity } from "../wallets/entities/wallet.entity";
 import { TransactionsService } from "../transactions/transactions.service";
 import { TransactionEntity } from "../transactions/entities/transaction.entity";
 import { AuthModule } from "../auth/auth.module";
+import { CodesModule } from "../codes/codes.module";
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { AuthModule } from "../auth/auth.module";
     // }),
     AuthModule,
     TypeOrmModule.forFeature([UserEntity, WalletEntity, TransactionEntity]),
+    CodesModule
   ],
   providers: [UsersResolver, UsersService, WalletsService, TransactionsService],
   exports: [UsersService],

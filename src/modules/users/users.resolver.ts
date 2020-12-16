@@ -22,6 +22,8 @@ import { TransactionPurpose } from "../transactions/entities/transaction.entity"
 import { socket } from "src/main";
 import { WalletDto } from "../wallets/dto/wallet.dto";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
+import { CreateUserInput } from "./inputs/create-user.input";
+import { UpdateUserInput } from "./inputs/update-user.input";
 
 @Resolver(() => UserEntity)
 export class UsersResolver {
@@ -42,17 +44,41 @@ export class UsersResolver {
   }
 
   @Mutation(() => UserDto)
+  async createUser(
+    @Args("input") input: CreateUserInput
+  ): Promise<UserDto> {
+      return this.usersService.upsertUser(input);
+  }
+
+  @Mutation(() => UserDto)
   @UseGuards(AuthGuard)
-  async addUser(
-    @Args("input") input: UserInput,
+  async updateUser(
+    @Args("input") input: UpdateUserInput,
     @AuthUser() user: UserEntity
   ): Promise<UserDto> {
-    if (!user) {
-      return this.usersService.createUser(input);
-    } else {
-      return user;
-    }
+      return this.usersService.updateUser(input, user);
   }
+
+
+  // @Mutation(() => UserDto)
+  // async confirmCode(
+  //   @Args("input") input: CreateUserInput
+  // ): Promise<UserDto> {
+  //     return this.usersService.upsertUser(input);
+  // }
+
+  // @Mutation(() => UserDto)
+  // @UseGuards(AuthGuard)
+  // async addUser(
+  //   @Args("input") input: UserInput,
+  //   @AuthUser() user: UserEntity
+  // ): Promise<UserDto> {
+  //   if (!user) {
+  //     return this.usersService.createUser(input);
+  //   } else {
+  //     return user;
+  //   }
+  // }
 
   @Mutation(() => TransactionDto)
   @UseGuards(AuthGuard)

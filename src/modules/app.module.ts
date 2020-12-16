@@ -20,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProgramsModule } from './programs/programs.module';
 import { UserTagsModule } from './user-tags/user-tags.module';
 import { EventTagsModule } from './event-tags/event-tags.module';
+import { CodesModule } from './codes/codes.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { EventTagsModule } from './event-tags/event-tags.module';
     ProgramsModule,
     UserTagsModule,
     EventTagsModule,
+    CodesModule,
     AuthModule
   ],
   controllers: [AppController],

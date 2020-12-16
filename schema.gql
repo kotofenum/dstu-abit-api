@@ -4,14 +4,35 @@
 
 type UserDto {
   uid: String!
-  firstName: String!
-  lastName: String!
-  email: String!
+  firstName: String
+  lastName: String
+  patronym: String
+  type: AccountType!
+  birthDate: DateTime
+  country: String
+  locality: String
+  email: String
+  pwd: String
+  school: String
+  position: String
+  child: String
+  course: String
   phone: String!
   emailVerified: Boolean!
   phoneVerified: Boolean!
-  picture: String!
+  picture: String
 }
+
+enum AccountType {
+  enrolee
+  parent
+  teacher
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type WalletDto {
   uid: String!
@@ -37,6 +58,17 @@ type TransactionDto {
   purpose: String!
   status: String!
   description: String
+}
+
+type CodeDto {
+  uid: String!
+  phone: String!
+  expireAt: DateTime!
+  issuer: UserDto!
+}
+
+type AccessDto {
+  access_token: String
 }
 
 type ExerciseOriginDto {
@@ -69,11 +101,6 @@ type ChallengeDto {
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
 scalar JSON
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type ChallengeExerciseDto {
   uid: String!
@@ -197,6 +224,7 @@ type EventTagDto {
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
+  code(uid: ID!): CodeDto!
   wallets: [WalletDto!]!
   myWallets: [WalletDto!]!
   wallet(uid: ID!): WalletDto!
@@ -244,9 +272,14 @@ input ProgramsOfSpecialtyInput {
 }
 
 type Mutation {
-  addUser(input: UserInput!): UserDto!
+  createUser(input: CreateUserInput!): UserDto!
+  updateUser(input: UpdateUserInput!): UserDto!
   depositFunds(input: DepositFundsInput!): TransactionDto!
   withdrawFunds(input: WithdrawFundsInput!): TransactionDto!
+  sendCode(input: CodeInput!): CodeDto!
+  confirmCode(input: ConfirmCodeInput!): AccessDto!
+  addCode(input: CodeInput!): CodeDto!
+  login(input: LoginInput!): AccessDto!
   addWallet: WalletDto!
   addExerciseOrigin(input: ExerciseOriginInput!): ExerciseOriginDto!
   addChallengeExercise(input: ChallengeExerciseInput!): ChallengeExerciseDto!
@@ -265,12 +298,24 @@ type Mutation {
   createEventTag(input: EventTagInput!): EventTagDto!
 }
 
-input UserInput {
-  oauthId: String!
+input CreateUserInput {
+  phone: String!
+  type: AccountType!
+}
+
+input UpdateUserInput {
   firstName: String!
   lastName: String!
+  patronym: String!
+  birthDate: DateTime!
+  country: String!
+  locality: String!
   email: String!
-  picture: String!
+  pwd: String!
+  school: String
+  position: String
+  child: String
+  course: String
 }
 
 input DepositFundsInput {
@@ -279,6 +324,21 @@ input DepositFundsInput {
 
 input WithdrawFundsInput {
   amount: Float!
+}
+
+input CodeInput {
+  phone: String!
+  type: AccountType!
+}
+
+input ConfirmCodeInput {
+  phone: String!
+  code: String!
+}
+
+input LoginInput {
+  phone: String!
+  password: String!
 }
 
 input ExerciseOriginInput {

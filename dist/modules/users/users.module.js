@@ -18,6 +18,7 @@ const wallet_entity_1 = require("../wallets/entities/wallet.entity");
 const transactions_service_1 = require("../transactions/transactions.service");
 const transaction_entity_1 = require("../transactions/entities/transaction.entity");
 const auth_module_1 = require("../auth/auth.module");
+const codes_module_1 = require("../codes/codes.module");
 let UsersModule = class UsersModule {
 };
 UsersModule = __decorate([
@@ -25,6 +26,7 @@ UsersModule = __decorate([
         imports: [
             auth_module_1.AuthModule,
             typeorm_1.TypeOrmModule.forFeature([user_entity_1.UserEntity, wallet_entity_1.WalletEntity, transaction_entity_1.TransactionEntity]),
+            codes_module_1.CodesModule
         ],
         providers: [users_resolver_1.UsersResolver, users_service_1.UsersService, wallets_service_1.WalletsService, transactions_service_1.TransactionsService],
         exports: [users_service_1.UsersService],

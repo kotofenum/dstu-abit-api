@@ -9,13 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserEntity = void 0;
+exports.UserEntity = exports.AccountType = void 0;
+const graphql_1 = require("@nestjs/graphql");
 const challenge_pass_entity_1 = require("../../challenge-passes/entities/challenge-pass.entity");
+const code_entity_1 = require("../../codes/entities/code.entity");
 const exercise_origin_entity_1 = require("../../exercise-origins/entities/exercise-origin.entity");
 const user_tag_entity_1 = require("../../user-tags/entities/user-tag.entity");
 const user_training_entity_1 = require("../../user-trainings/entities/user-training.entity");
 const wallet_entity_1 = require("../../wallets/entities/wallet.entity");
 const typeorm_1 = require("typeorm");
+var AccountType;
+(function (AccountType) {
+    AccountType["enrolee"] = "enrolee";
+    AccountType["parent"] = "parent";
+    AccountType["teacher"] = "teacher";
+})(AccountType = exports.AccountType || (exports.AccountType = {}));
+graphql_1.registerEnumType(AccountType, {
+    name: "AccountType",
+});
 let UserEntity = class UserEntity {
 };
 __decorate([
@@ -23,24 +34,21 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "uid", void 0);
 __decorate([
-    typeorm_1.Index(),
-    typeorm_1.Column({
-        unique: true,
-    }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "oauthId", void 0);
-__decorate([
-    typeorm_1.Column("varchar", { length: 100 }),
+    typeorm_1.Column("varchar", { length: 100, nullable: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "firstName", void 0);
 __decorate([
-    typeorm_1.Column("varchar", { length: 100 }),
+    typeorm_1.Column("varchar", { length: 100, nullable: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "lastName", void 0);
 __decorate([
     typeorm_1.Column("varchar", { length: 100, nullable: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "patronym", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], UserEntity.prototype, "type", void 0);
 __decorate([
     typeorm_1.Column({ nullable: true }),
     __metadata("design:type", Date)
@@ -70,11 +78,15 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "pwd", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({ nullable: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "email", void 0);
 __decorate([
     typeorm_1.Column({ nullable: true }),
+    __metadata("design:type", String)
+], UserEntity.prototype, "school", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: false }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "phone", void 0);
 __decorate([
@@ -92,7 +104,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], UserEntity.prototype, "phoneVerified", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({ nullable: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "picture", void 0);
 __decorate([
@@ -130,6 +142,13 @@ __decorate([
     typeorm_1.JoinColumn(),
     __metadata("design:type", Array)
 ], UserEntity.prototype, "tags", void 0);
+__decorate([
+    typeorm_1.OneToMany(() => code_entity_1.CodeEntity, (code) => code.issuer, {
+        cascade: true,
+    }),
+    typeorm_1.JoinColumn(),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "codes", void 0);
 __decorate([
     typeorm_1.CreateDateColumn(),
     __metadata("design:type", Date)
