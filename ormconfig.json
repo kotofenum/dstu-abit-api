@@ -1,0 +1,13 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "database": "webdb",
+  "username": "webdb_user",
+  "password": "webdb_pass",
+  "entities": [
+    "dist/**/*.entity.js"
+  ],
+  "synchronize": true,
+  "logging": false
+}

@@ -1,0 +1,372 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserDto {
+  uid: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String!
+  emailVerified: Boolean!
+  phoneVerified: Boolean!
+  picture: String!
+}
+
+type WalletDto {
+  uid: String!
+  balance: Float!
+  owner: UserDto!
+  type: WalletType!
+  secure: Boolean!
+}
+
+enum WalletType {
+  personal
+  corporate
+  challenge
+  heap
+  system
+}
+
+type TransactionDto {
+  uid: String!
+  amount: Float!
+  from: WalletDto
+  to: WalletDto
+  purpose: String!
+  status: String!
+  description: String
+}
+
+type ExerciseOriginDto {
+  uid: String!
+  name: String!
+  owner: UserDto!
+  key: ExerciseKey!
+  videoUrl: String!
+}
+
+enum ExerciseKey {
+  squats
+  pushUps
+  plank
+  jumpingJacks
+}
+
+type ChallengeDto {
+  uid: String!
+  title: String!
+  description: String
+  owner: UserDto!
+  price: Float!
+  config: JSON
+  startsAt: DateTime!
+  endsAt: DateTime!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ChallengeExerciseDto {
+  uid: String!
+  origin: ExerciseOriginDto!
+  challenge: ChallengeDto!
+  type: ExerciseType!
+  goal: Float!
+  customVideoUrl: String
+}
+
+enum ExerciseType {
+  detection
+  timer
+}
+
+type ChallengePassDto {
+  uid: String!
+  challenge: ChallengeDto!
+  user: UserDto!
+  cost: Float!
+  obtainedAt: DateTime!
+  revokedAt: DateTime
+}
+
+type ChallengeWithExercisesDto {
+  uid: String!
+  title: String!
+  description: String
+  owner: UserDto!
+  price: Float!
+  exercises: [ChallengeExerciseDto!]!
+  config: JSON
+  startsAt: DateTime!
+  endsAt: DateTime!
+}
+
+type UserTrainingDto {
+  uid: String!
+  challenge: ChallengeDto!
+  exercises: [UserExerciseDto!]!
+  user: UserDto!
+  startedAt: DateTime
+  endedAt: DateTime
+}
+
+type UserExerciseDto {
+  uid: String!
+  challengeExercise: ChallengeExerciseDto!
+  training: UserTrainingDto!
+  score: Float!
+  frames: JSON
+  startedAt: DateTime
+  endedAt: DateTime
+}
+
+type EventDto {
+  uid: String!
+  title: String!
+  description: String
+  type: String!
+  place: String
+  reward: Float!
+  placesLeft: Float!
+  userIsJoined: Boolean!
+  tags: JSON
+  startsAt: DateTime!
+  endsAt: DateTime!
+}
+
+type MajorDto {
+  uid: String!
+  title: String!
+  code: String!
+  fundedPlaces: Float!
+}
+
+type SpecialtyDto {
+  uid: String!
+  title: String!
+  code: String!
+  major: MajorDto!
+}
+
+type ProgramDto {
+  uid: String!
+  title: String!
+  attendance: Boolean!
+  degree: String!
+  studyPeriod: Float!
+  languages: String!
+  description: String!
+  specialty: SpecialtyDto!
+}
+
+type UserTagDto {
+  uid: String!
+  relationId: String!
+  relationType: TagRelationType!
+  user: UserDto!
+}
+
+enum TagRelationType {
+  major
+  specialty
+  program
+}
+
+type ConnectedUserTagsDto {
+  majors: [MajorDto!]!
+  specialties: [SpecialtyDto!]!
+  programs: [ProgramDto!]!
+}
+
+type EventTagDto {
+  uid: String!
+  event: EventDto!
+  relationId: String!
+  relationType: TagRelationType!
+}
+
+type Query {
+  users: [UserDto!]!
+  user(uid: ID!): UserDto!
+  wallets: [WalletDto!]!
+  myWallets: [WalletDto!]!
+  wallet(uid: ID!): WalletDto!
+  transactions: [TransactionDto!]!
+  transaction(uid: ID!): TransactionDto!
+  exerciseOrigins: [ExerciseOriginDto!]!
+  exerciseOrigin(uid: ID!): ExerciseOriginDto!
+  challengeExercises: [ChallengeExerciseDto!]!
+  challengeExercise(uid: ID!): ChallengeExerciseDto!
+  challengePasses: [ChallengePassDto!]!
+  myChallengePasses: [ChallengePassDto!]!
+  challengePass(uid: ID!): ChallengePassDto!
+  challenges: [ChallengeWithExercisesDto!]!
+  myChallenges: [ChallengeWithExercisesDto!]!
+  challenge(uid: ID!): ChallengeWithExercisesDto!
+  userExercises: [UserExerciseDto!]!
+  userExercise(uid: ID!): UserExerciseDto!
+  userTrainings: [UserTrainingDto!]!
+  myUserTrainings: [UserTrainingDto!]!
+  myUserTrainingsForChallenge(uid: ID!): [UserTrainingDto!]!
+  userTraining(uid: ID!): UserTrainingDto!
+  events: [EventDto!]!
+  event(uid: ID!): EventDto!
+  majors: [MajorDto!]!
+  major(uid: ID!): MajorDto!
+  specialties: [SpecialtyDto!]!
+  specialty(uid: ID!): SpecialtyDto!
+  specialtiesOfMajor(input: SpecialtiesOfMajorInput!): [SpecialtyDto!]!
+  programs: [ProgramDto!]!
+  program(uid: ID!): ProgramDto!
+  programsOfSpecialty(input: ProgramsOfSpecialtyInput!): [ProgramDto!]!
+  userTags: [UserTagDto!]!
+  myUserTags: ConnectedUserTagsDto!
+  userTag(uid: ID!): EventTagDto!
+  eventTags: [EventTagDto!]!
+  eventsForUserTags: [EventDto!]!
+}
+
+input SpecialtiesOfMajorInput {
+  majorId: String!
+}
+
+input ProgramsOfSpecialtyInput {
+  specialtyId: String!
+}
+
+type Mutation {
+  addUser(input: UserInput!): UserDto!
+  depositFunds(input: DepositFundsInput!): TransactionDto!
+  withdrawFunds(input: WithdrawFundsInput!): TransactionDto!
+  addWallet: WalletDto!
+  addExerciseOrigin(input: ExerciseOriginInput!): ExerciseOriginDto!
+  addChallengeExercise(input: ChallengeExerciseInput!): ChallengeExerciseDto!
+  obtainChallengePass(input: ChallengePassInput!): ChallengePassDto!
+  addChallenge(input: ChallengeInput!): ChallengeDto!
+  createUserExercise(input: UserExerciseInput!): UserExerciseDto!
+  createUserTraining(input: UserTrainingInput!): UserTrainingDto!
+  finishUserTraining(uid: ID!): UserTrainingDto!
+  addEvent(input: EventInput!): EventDto!
+  joinEvent(input: JoinEventInput!): EventDto!
+  leftEvent(input: JoinEventInput!): EventDto!
+  addMajor(input: MajorInput!): MajorDto!
+  addSpecialty(input: SpecialtyInput!): SpecialtyDto!
+  addProgram(input: ProgramInput!): ProgramDto!
+  createUserTag(input: UserTagInput!): UserTagDto!
+  createEventTag(input: EventTagInput!): EventTagDto!
+}
+
+input UserInput {
+  oauthId: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  picture: String!
+}
+
+input DepositFundsInput {
+  amount: Float!
+}
+
+input WithdrawFundsInput {
+  amount: Float!
+}
+
+input ExerciseOriginInput {
+  name: String!
+  key: ExerciseKey!
+  videoUrl: String!
+}
+
+input ChallengeExerciseInput {
+  exerciseOriginId: String!
+  challengeId: String!
+  type: ExerciseType!
+  goal: Float!
+  customVideoUrl: String
+}
+
+input ChallengePassInput {
+  challengeId: String!
+}
+
+input ChallengeInput {
+  title: String!
+  description: String
+  price: Float!
+  config: JSON!
+  startsAt: DateTime!
+  endsAt: DateTime!
+}
+
+input UserExerciseInput {
+  challengeExerciseId: String!
+  trainingId: String!
+}
+
+input UserTrainingInput {
+  challengeId: String!
+}
+
+input EventInput {
+  title: String!
+  description: String
+  type: String!
+  place: String
+  reward: Float!
+  placesLeft: Float!
+  userIsJoined: Boolean!
+  tags: JSON!
+  startsAt: DateTime!
+  endsAt: DateTime!
+}
+
+input JoinEventInput {
+  eventId: String!
+}
+
+input MajorInput {
+  title: String!
+  code: String!
+  fundedPlaces: Float!
+}
+
+input SpecialtyInput {
+  title: String!
+  code: String!
+  majorId: String!
+}
+
+input ProgramInput {
+  title: String!
+  attendance: Boolean!
+  degree: String!
+  studyPeriod: Float!
+  languages: String!
+  description: String!
+  specialtyId: String!
+}
+
+input UserTagInput {
+  relationId: String!
+  relationType: TagRelationType!
+}
+
+input EventTagInput {
+  eventId: String!
+  relationId: String!
+  relationType: TagRelationType!
+}
+
+type Subscription {
+  balanceUpdated: WalletDto!
+}

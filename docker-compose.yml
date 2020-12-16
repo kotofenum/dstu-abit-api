@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  web_server:
+    container_name: web_server
+    build: .
+    command: sh -c "yarn && yarn start:dev"
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - web_postgres
+    links:
+      - 'web_postgres:database'
+    environment:
+      DB_NAME: web_db
+      DB_USER: web-db-user
+      DB_PASS: web-db-pass
+
+  web_postgres:
+    container_name: web_postgres
+    image: postgres:12.2
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./database-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: web_db
+      POSTGRES_USER: web-db-user
+      POSTGRES_PASSWORD: web-db-pass

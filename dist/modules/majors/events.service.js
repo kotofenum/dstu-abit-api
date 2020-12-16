@@ -1,0 +1,73 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventsService = void 0;
+const event_entity_1 = require("./entities/event.entity");
+const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+let EventsService = class EventsService {
+    constructor(eventsRepository) {
+        this.eventsRepository = eventsRepository;
+    }
+    async createEvent(data, owner) {
+        return await this.eventsRepository.save({
+            title: data.title,
+            description: data.description,
+            type: data.type,
+            place: data.place,
+            reward: data.reward,
+            placesLeft: data.placesLeft,
+            userIsJoined: data.userIsJoined,
+            tags: data.tags,
+            startsAt: data.startsAt,
+            endsAt: data.endsAt,
+        });
+    }
+    async getEvents() {
+        return await this.eventsRepository.find();
+    }
+    async getEventById(id) {
+        return await this.eventsRepository.findOne(id);
+    }
+    async joinEvent(data) {
+        const event = await this.eventsRepository.findOne(data.eventId);
+        if (event.placesLeft > 0 && !event.userIsJoined) {
+            event.userIsJoined = true;
+            event.placesLeft = event.placesLeft - 1;
+            return await this.eventsRepository.save(event);
+        }
+        else {
+            return event;
+        }
+    }
+    async leftEvent(data) {
+        const event = await this.eventsRepository.findOne(data.eventId);
+        if (event.userIsJoined) {
+            event.userIsJoined = false;
+            event.placesLeft = event.placesLeft + 1;
+            return await this.eventsRepository.save(event);
+        }
+        else {
+            return event;
+        }
+    }
+};
+EventsService = __decorate([
+    common_1.Injectable(),
+    __param(0, typeorm_1.InjectRepository(event_entity_1.EventEntity)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
+], EventsService);
+exports.EventsService = EventsService;
+//# sourceMappingURL=events.service.js.map
