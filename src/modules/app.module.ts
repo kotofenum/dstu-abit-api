@@ -21,6 +21,8 @@ import { ProgramsModule } from './programs/programs.module';
 import { UserTagsModule } from './user-tags/user-tags.module';
 import { EventTagsModule } from './event-tags/event-tags.module';
 import { CodesModule } from './codes/codes.module';
+import { ProgramSubjectsModule } from './program-subjects/program-subjects.module';
+import { SubjectsModule } from './subjects/subjects.module';
 
 @Module({
   imports: [
@@ -50,7 +52,8 @@ import { CodesModule } from './codes/codes.module';
     UserTagsModule,
     EventTagsModule,
     CodesModule,
-    SpecialtiesModule,
+    SubjectsModule,
+    ProgramSubjectsModule,
     AuthModule
   ],
   controllers: [AppController],

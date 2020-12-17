@@ -42,7 +42,7 @@ export class UserEntity {
   patronym: string;
 
   // @Index()
-  @Column()
+  @Column({ default: AccountType.enrolee})
   type: AccountType;
 
   @Column({ nullable: true }) // TODO: временно

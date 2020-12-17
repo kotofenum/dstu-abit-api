@@ -241,6 +241,17 @@ type EventTagDto {
   relationType: TagRelationType!
 }
 
+type SubjectDto {
+  uid: String!
+  title: String!
+}
+
+type ProgramSubjectDto {
+  uid: String!
+  program: ProgramDto!
+  subject: SubjectDto!
+}
+
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
@@ -278,9 +289,12 @@ type Query {
   programsOfSpecialty(input: ProgramsOfSpecialtyInput!): [ProgramDto!]!
   userTags: [UserTagDto!]!
   myUserTags: ConnectedUserTagsDto!
-  userTag(uid: ID!): EventTagDto!
+  userTag(uid: ID!): ProgramSubjectDto!
   eventTags: [EventTagDto!]!
   eventsForUserTags: [EventDto!]!
+  programSubjects: [ProgramSubjectDto!]!
+  subjects: [SubjectDto!]!
+  subject(uid: ID!): SubjectDto!
 }
 
 input SpecialtiesOfMajorInput {
@@ -316,6 +330,7 @@ type Mutation {
   addProgram(input: ProgramInput!): ProgramDto!
   createUserTag(input: UserTagInput!): UserTagDto!
   createEventTag(input: EventTagInput!): EventTagDto!
+  addSubject(input: SubjectInput!): SubjectDto!
 }
 
 input CreateUserInput {
@@ -456,6 +471,10 @@ input EventTagInput {
   eventId: String!
   relationId: String!
   relationType: TagRelationType!
+}
+
+input SubjectInput {
+  title: String!
 }
 
 type Subscription {

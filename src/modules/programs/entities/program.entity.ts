@@ -1,4 +1,5 @@
 import { MajorEntity } from "src/modules/majors/entities/major.entity";
+import { ProgramSubjectEntity } from "src/modules/program-subjects/entities/program-subject.entity";
 import { SpecialtyEntity } from "src/modules/specialties/entities/specialty.entity";
 import {
   Entity,
@@ -42,6 +43,16 @@ export class ProgramEntity {
     }
   )
   specialty: SpecialtyEntity;
+
+  @OneToMany(
+    () => ProgramSubjectEntity,
+    (programSubject) => programSubject.program,
+    {
+      cascade: true,
+    }
+  )
+  @JoinColumn()
+  subjects: ProgramSubjectEntity[];
 
   @CreateDateColumn()
   dateCreated: Date;

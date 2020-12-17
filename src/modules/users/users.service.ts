@@ -20,7 +20,6 @@ export class UsersService {
 
   async createUser(data: UserInput): Promise<UserEntity> {
     return await this.usersRepository.save({
-      oauthId: data.oauthId,
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
