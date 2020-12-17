@@ -21,7 +21,7 @@ import { EventEntity } from "../events/entities/event.entity";
 import { EventsService } from "../events/events.service";
 import { UserTagsService } from "../user-tags/user-tags.service";
 
-const evnts = [];
+const evnts = []
 
 @Injectable()
 export class EventTagsService {
@@ -59,9 +59,11 @@ export class EventTagsService {
   }
 
   async populateTags() {
+    const allMajors = await this.majorsService.getMajors()
+    const allMajorCodes = allMajors.map(major => major.code)
     for (const event of evnts) {
-      const vnt = await this.eventsService.getEventByTitle(event.name);
-      for (const majorCode of event.specialtyCodes || []) {
+      const vnt = await this.eventsService.getEventByTitle(event.name)
+      for (const majorCode of event.specialtyCodes || allMajorCodes || []) {
         const major = await this.majorsService.getMajorByCode(majorCode);
         await this.createEventTag({
           relationId: major.uid,
