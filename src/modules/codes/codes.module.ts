@@ -15,7 +15,7 @@ import { UsersService } from "../users/users.service";
     AuthModule,
     HttpModule.register({
       proxy: {
-        host: "proxy.dstu.local",
+        host: process.env.PROXY_HOST,
         port: 3128,
         auth: {
           username: process.env.PROXY_USER,
