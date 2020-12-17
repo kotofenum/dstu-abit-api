@@ -59,6 +59,11 @@ export class EventsService {
   async getEventsByIds(ids: string[]): Promise<EventEntity[]> {
     return await this.eventsRepository.findByIds(ids);
   }
+
+  async getEventsByModule(module: ModuleType): Promise<EventEntity[]> {
+    return await this.eventsRepository.find({ where: { module: module } });
+  }
+
   async getEventByTitle(title: string): Promise<EventEntity> {
     return await this.eventsRepository.findOne({ where: { title: title } });
   }

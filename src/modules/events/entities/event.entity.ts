@@ -41,6 +41,7 @@ export enum ModuleType {
   "admissionsCampaign" = "admissionsCampaign",
   "preUniversity" = "preUniversity",
   "sportLeisureMore" = "sportLeisureMore",
+  "futureTour" = "futureTour",
 }
 
 registerEnumType(ModuleType, {

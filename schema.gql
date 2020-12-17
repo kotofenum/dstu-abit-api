@@ -197,6 +197,7 @@ enum ModuleType {
   admissionsCampaign
   preUniversity
   sportLeisureMore
+  futureTour
 }
 
 type MajorDto {
@@ -333,6 +334,7 @@ type Query {
   myUserTrainingsForChallenge(uid: ID!): [UserTrainingDto!]!
   userTraining(uid: ID!): UserTrainingDto!
   events: [EventDto!]!
+  eventsForModule(input: ModuleEventsInput!): [EventDto!]!
   event(uid: ID!): EventDto!
   majors: [MajorDto!]!
   major(uid: ID!): MajorDto!
@@ -350,6 +352,10 @@ type Query {
   programSubjects: [ProgramSubjectDto!]!
   subjects: [SubjectDto!]!
   subject(uid: ID!): SubjectDto!
+}
+
+input ModuleEventsInput {
+  module: ModuleType!
 }
 
 input SpecialtiesOfMajorInput {

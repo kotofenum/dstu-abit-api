@@ -8,6 +8,7 @@ import { UseGuards } from "@nestjs/common";
 import { AuthUser } from "src/decorators/auth-user.decorator";
 import { UserEntity } from "../users/entities/user.entity";
 import { JoinEventInput } from "./inputs/join-event.input";
+import { ModuleEventsInput } from "./inputs/moduleEvents.input";
 
 @Resolver(() => EventEntity)
 export class EventsResolver {
@@ -16,6 +17,13 @@ export class EventsResolver {
   @Query(() => [EventDto])
   async events(): Promise<EventDto[]> {
     return this.eventsService.getEvents();
+  }
+
+  @Query(() => [EventDto])
+  async eventsForModule(
+    @Args("input") input: ModuleEventsInput
+  ): Promise<EventDto[]> {
+    return this.eventsService.getEventsByModule(input.module);
   }
 
   @Query(() => EventDto)
