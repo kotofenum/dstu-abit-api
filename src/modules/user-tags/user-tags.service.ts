@@ -63,6 +63,27 @@ export class UserTagsService {
       user: user,
     });
   }
+  
+  async removeUserTag(
+    data: UserTagInput,
+    user: UserEntity
+  ): Promise<{ result: string }> {
+    const userTag = await this.userTagsRepository.findOne({
+      where: {
+        relationId: data.relationId,
+        relationType: data.relationType,
+        user: user,
+      },
+    });
+
+    if (userTag) {
+      await this.userTagsRepository.remove(userTag);
+      return { result: "ok" };
+    } else {
+      return { result: "error" };
+      // throw new BadRequestException("no tag to remove");
+    }
+  }
 
   // async finishUserTag(
   //   user: UserEntity,
@@ -98,7 +119,9 @@ export class UserTagsService {
 
     const specialtyTagIds = specialtyTags.map((tag) => tag.relationId);
 
-    const specialties = await this.specialtiesService.getSpecialtiesByIds(specialtyTagIds);
+    const specialties = await this.specialtiesService.getSpecialtiesByIds(
+      specialtyTagIds
+    );
 
     // programs
     const programTags = await this.userTagsRepository.find({

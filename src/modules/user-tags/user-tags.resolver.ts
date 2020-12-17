@@ -8,12 +8,11 @@ import { UseGuards } from "@nestjs/common";
 import { AuthUser } from "src/decorators/auth-user.decorator";
 import { UserEntity } from "../users/entities/user.entity";
 import { ConnectedUserTagsDto } from "./dto/connected-user-tags.dto";
+import { UserTagResultDto } from "./dto/user-tag-result.dto";
 
 @Resolver(() => UserTagEntity)
 export class UserTagsResolver {
-  constructor(
-    private readonly userTagsService: UserTagsService,
-  ) {}
+  constructor(private readonly userTagsService: UserTagsService) {}
 
   @Query(() => [UserTagDto])
   async userTags(): Promise<UserTagDto[]> {
@@ -22,10 +21,11 @@ export class UserTagsResolver {
 
   @Query(() => ConnectedUserTagsDto)
   @UseGuards(AuthGuard)
-  async myUserTags(@AuthUser() user: UserEntity): Promise<ConnectedUserTagsDto> {
+  async myUserTags(
+    @AuthUser() user: UserEntity
+  ): Promise<ConnectedUserTagsDto> {
     return this.userTagsService.getUserTags(user);
   }
-
 
   @Query(() => UserTagDto)
   async userTag(
@@ -41,6 +41,15 @@ export class UserTagsResolver {
     @AuthUser() user: UserEntity
   ): Promise<UserTagDto> {
     return this.userTagsService.createUserTag(input, user);
+  }
+
+  @Mutation(() => UserTagResultDto)
+  @UseGuards(AuthGuard)
+  async removeUserTag(
+    @Args("input") input: UserTagInput,
+    @AuthUser() user: UserEntity
+  ): Promise<UserTagResultDto> {
+    return this.userTagsService.removeUserTag(input, user);
   }
 
   // @Mutation(() => UserTagDto)

@@ -283,6 +283,10 @@ type ConnectedUserTagsDto {
   programs: [ProgramDto!]!
 }
 
+type UserTagResultDto {
+  result: String!
+}
+
 type EventTagDto {
   uid: String!
   event: EventDto!
@@ -376,6 +380,7 @@ type Mutation {
   addSpecialty(input: SpecialtyInput!): SpecialtyDto!
   addProgram(input: ProgramInput!): ProgramDto!
   createUserTag(input: UserTagInput!): UserTagDto!
+  removeUserTag(input: UserTagInput!): UserTagResultDto!
   createEventTag(input: EventTagInput!): EventTagDto!
   addSubject(input: SubjectInput!): SubjectDto!
 }
