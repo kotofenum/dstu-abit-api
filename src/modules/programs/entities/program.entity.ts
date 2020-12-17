@@ -1,4 +1,8 @@
-import { MajorEntity } from "src/modules/majors/entities/major.entity";
+import { registerEnumType } from "@nestjs/graphql";
+import {
+  MajorEntity,
+  PlacesMeta,
+} from "src/modules/majors/entities/major.entity";
 import { ProgramSubjectEntity } from "src/modules/program-subjects/entities/program-subject.entity";
 import { SpecialtyEntity } from "src/modules/specialties/entities/specialty.entity";
 import {
@@ -13,6 +17,16 @@ import {
   JoinColumn,
 } from "typeorm";
 
+export enum ProgramDegree {
+  bachelor = "bachelor",
+  certified = "certified",
+  master = "master",
+}
+
+registerEnumType(ProgramDegree, {
+  name: "ProgramDegree",
+});
+
 @Entity("programs")
 export class ProgramEntity {
   @PrimaryGeneratedColumn("uuid") uid: string;
@@ -20,20 +34,65 @@ export class ProgramEntity {
   @Column()
   title: string;
 
-  @Column({ default: true })
-  attendance: boolean;
+  @Column({ nullable: true })
+  fullTimePlaces: number;
+
+  @Column({ nullable: true })
+  fullTimeMeta: PlacesMeta;
+
+  @Column({ nullable: true })
+  mixedPlaces: number;
+
+  @Column({ nullable: true })
+  mixedMeta: PlacesMeta;
+
+  @Column({ nullable: true })
+  extramuralPlaces: number;
+
+  @Column({ nullable: true })
+  extramuralMeta: PlacesMeta;
 
   @Column()
-  degree: string;
+  fullTimeForm: boolean;
 
   @Column()
-  studyPeriod: number; // TODO: тут сложнее, еще для заочки свои значения есть, не целые причем
+  mixedForm: boolean;
+
+  @Column()
+  extramuralForm: boolean;
+
+  @Column()
+  degree: ProgramDegree;
+
+  @Column()
+  studyPeriod: string;
 
   @Column()
   languages: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
+
+  @Column({ nullable: true })
+  advantages: string;
+
+  @Column({ nullable: true })
+  partners: string;
+
+  @Column({ nullable: true })
+  projectsAndPractices: string;
+
+  @Column({ nullable: true })
+  leadProfessors: string;
+
+  @Column({ nullable: true })
+  graduates: string;
+
+  @Column({ nullable: true })
+  unit: string;
+
+  @Column({ nullable: true })
+  supervisor: string;
 
   @ManyToOne(
     () => SpecialtyEntity,

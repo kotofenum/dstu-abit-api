@@ -16,22 +16,21 @@ export class SpecialtyDto {
   @Field()
   readonly major: MajorDto;
 
-
-  @Field()
+  @Field({ nullable: true })
   readonly fullTimePlaces: number;
 
-  @Field(() => PlacesMeta)
+  @Field(() => PlacesMeta, { nullable: true })
   readonly fullTimeMeta: PlacesMeta;
 
-  @Field()
+  @Field({ nullable: true })
   readonly mixedPlaces: number;
 
-  @Field(() => PlacesMeta)
+  @Field(() => PlacesMeta, { nullable: true })
   readonly mixedMeta: PlacesMeta;
 
-  @Field()
+  @Field({ nullable: true })
   readonly extramuralPlaces: number;
 
-  @Field(() => PlacesMeta)
+  @Field(() => PlacesMeta, { nullable: true })
   readonly extramuralMeta: PlacesMeta;
 }

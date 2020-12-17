@@ -174,12 +174,12 @@ type MajorDto {
   uid: String!
   title: String!
   code: String!
-  fullTimePlaces: Float!
-  fullTimeMeta: PlacesMeta!
-  mixedPlaces: Float!
-  mixedMeta: PlacesMeta!
-  extramuralPlaces: Float!
-  extramuralMeta: PlacesMeta!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
 }
 
 enum PlacesMeta {
@@ -196,23 +196,44 @@ type SpecialtyDto {
   title: String!
   code: String!
   major: MajorDto!
-  fullTimePlaces: Float!
-  fullTimeMeta: PlacesMeta!
-  mixedPlaces: Float!
-  mixedMeta: PlacesMeta!
-  extramuralPlaces: Float!
-  extramuralMeta: PlacesMeta!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
 }
 
 type ProgramDto {
   uid: String!
   title: String!
-  attendance: Boolean!
-  degree: String!
-  studyPeriod: Float!
-  languages: String!
-  description: String!
   specialty: SpecialtyDto!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
+  fullTimeForm: Boolean!
+  mixedForm: Boolean!
+  extramuralForm: Boolean!
+  degree: ProgramDegree!
+  studyPeriod: String!
+  languages: String!
+  description: String
+  advantages: String
+  partners: String
+  projectsAndPractices: String
+  leadProfessors: String
+  graduates: String
+  unit: String
+  supervisor: String
+}
+
+enum ProgramDegree {
+  bachelor
+  certified
+  master
 }
 
 type UserTagDto {
@@ -432,12 +453,12 @@ input JoinEventInput {
 input MajorInput {
   title: String!
   code: String!
-  fullTimePlaces: Float!
-  fullTimeMeta: PlacesMeta!
-  mixedPlaces: Float!
-  mixedMeta: PlacesMeta!
-  extramuralPlaces: Float!
-  extramuralMeta: PlacesMeta!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
 }
 
 input SpecialtyInput {
@@ -454,12 +475,27 @@ input SpecialtyInput {
 
 input ProgramInput {
   title: String!
-  attendance: Boolean!
-  degree: String!
-  studyPeriod: Float!
-  languages: String!
-  description: String!
   specialtyId: String!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
+  fullTimeForm: Boolean!
+  mixedForm: Boolean!
+  extramuralForm: Boolean!
+  degree: ProgramDegree!
+  studyPeriod: String!
+  languages: String!
+  description: String
+  advantages: String
+  partners: String
+  projectsAndPractices: String
+  leadProfessors: String
+  graduates: String
+  unit: String
+  supervisor: String
 }
 
 input UserTagInput {

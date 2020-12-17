@@ -28,6 +28,6 @@ export class MajorsResolver {
     @AuthUser() user: UserEntity
   ): Promise<MajorDto> {
     console.log(input);
-    return this.majorsService.createMajor(input, user);
+    return this.majorsService.createMajor(input);
   }
 }
