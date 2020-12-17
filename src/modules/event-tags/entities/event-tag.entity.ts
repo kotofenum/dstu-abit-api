@@ -33,7 +33,7 @@ export class EventTagEntity {
 
   @ManyToOne(
     () => EventEntity,
-    (event) => event.tags,
+    (event) => event.eventTags,
     {
       eager: true,
     }

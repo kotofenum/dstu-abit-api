@@ -1,10 +1,10 @@
-import { EventEntity } from "./entities/event.entity";
+import { EventEntity, EventType, ModuleType } from "./entities/event.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { In, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { EventInput } from "./inputs/event.input";
-import { UserEntity } from "../users/entities/user.entity";
-import { JoinEventInput } from "./inputs/join-event.input";
+
+const evnts = [];
 
 @Injectable()
 export class EventsService {
@@ -13,19 +13,38 @@ export class EventsService {
     private readonly eventsRepository: Repository<EventEntity>
   ) {}
 
-  async createEvent(data: EventInput, owner: UserEntity): Promise<EventEntity> {
+  async createEvent(data: EventInput): Promise<EventEntity> {
     return await this.eventsRepository.save({
       title: data.title,
       description: data.description,
       type: data.type,
-      place: data.place,
+      module: data.module,
+      faculty: data.faculty,
+      link: data.link,
       reward: data.reward,
-      placesLeft: data.placesLeft,
-      userIsJoined: data.userIsJoined,
-      tags: data.tags,
+      limit: data.limit,
+      placesLeft: data.limit,
       startsAt: data.startsAt,
       endsAt: data.endsAt,
     });
+  }
+
+  async populate() {
+    for (const event of evnts) {
+      await this.createEvent({
+        title: event.name,
+        description: event.description,
+        type: event.type as EventType,
+        module: event.module as ModuleType,
+        faculty: event.faculty,
+        link: event.link,
+        reward: event.reward,
+        limit: event.limit,
+        placesLeft: event.limit,
+        startsAt: new Date(event.start),
+        endsAt: new Date(event.end),
+      });
+    }
   }
 
   async getEvents(): Promise<EventEntity[]> {
@@ -40,25 +59,25 @@ export class EventsService {
     return await this.eventsRepository.findByIds(ids);
   }
 
-  async joinEvent(data: JoinEventInput): Promise<EventEntity> {
-    const event = await this.eventsRepository.findOne(data.eventId);
-    if (event.placesLeft > 0 && !event.userIsJoined) {
-      event.userIsJoined = true;
-      event.placesLeft = event.placesLeft - 1;
-      return await this.eventsRepository.save(event)
-    } else {
-      return event
-    }
-  }
+  // async joinEvent(data: JoinEventInput): Promise<EventEntity> {
+  //   const event = await this.eventsRepository.findOne(data.eventId);
+  //   if (event.placesLeft > 0 && !event.userIsJoined) {
+  //     event.userIsJoined = true;
+  //     event.placesLeft = event.placesLeft - 1;
+  //     return await this.eventsRepository.save(event);
+  //   } else {
+  //     return event;
+  //   }
+  // }
 
-  async leftEvent(data: JoinEventInput): Promise<EventEntity> {
-    const event = await this.eventsRepository.findOne(data.eventId);
-    if (event.userIsJoined) {
-      event.userIsJoined = false;
-      event.placesLeft = event.placesLeft + 1;
-      return await this.eventsRepository.save(event)
-    } else {
-      return event
-    }
-  }
+  // async leftEvent(data: JoinEventInput): Promise<EventEntity> {
+  //   const event = await this.eventsRepository.findOne(data.eventId);
+  //   if (event.userIsJoined) {
+  //     event.userIsJoined = false;
+  //     event.placesLeft = event.placesLeft + 1;
+  //     return await this.eventsRepository.save(event);
+  //   } else {
+  //     return event;
+  //   }
+  // }
 }

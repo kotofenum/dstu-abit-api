@@ -76,7 +76,7 @@ export class ProgramsService {
             extramuralForm: extramuralForm,
             degree: program.degree || "bachelor",
             studyPeriod: program.studyPeriod || "4 года",
-            languages: program.languages || "русский",
+            languages: program.languages?.join(',') || "русский",
             description: program.description,
             advantages: program.advantages,
             partners: program.partners,

@@ -1,9 +1,5 @@
-import { ChallengeExerciseEntity } from "src/modules/challenge-exercises/entities/challenge-exercise.entity";
-import { ChallengePassEntity } from "src/modules/challenge-passes/entities/challenge-pass.entity";
+import { registerEnumType } from "@nestjs/graphql";
 import { EventTagEntity } from "src/modules/event-tags/entities/event-tag.entity";
-import { UserTrainingEntity } from "src/modules/user-trainings/entities/user-training.entity";
-import { UserEntity } from "src/modules/users/entities/user.entity";
-import { ChallengeConfig } from "src/proto/challenge";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -16,6 +12,41 @@ import {
   JoinColumn,
 } from "typeorm";
 
+export enum EventType {
+  "presentation" = "presentation",
+  "discussion" = "discussion",
+  "roundTable" = "roundTable",
+  "webinar" = "webinar",
+  "workshop" = "workshop",
+  "masterClass" = "masterClass",
+  "lecture" = "lecture",
+  "quiz" = "quiz",
+  "video" = "video",
+  "tour" = "tour",
+  "olympiad" = "olympiad",
+  "consultation" = "consultation",
+  "meeting" = "meeting",
+  "presentationQuiz" = "presentationQuiz",
+  "roomToor" = "roomToor",
+}
+
+registerEnumType(EventType, {
+  name: "EventType",
+});
+
+export enum ModuleType {
+  "dstuOnline" = "dstuOnline",
+  "talents" = "talents",
+  "helloFaculty" = "helloFaculty",
+  "admissionsCampaign" = "admissionsCampaign",
+  "preUniversity" = "preUniversity",
+  "sportLeisureMore" = "sportLeisureMore",
+}
+
+registerEnumType(ModuleType, {
+  name: "ModuleType",
+});
+
 @Entity("events")
 export class EventEntity {
   @PrimaryGeneratedColumn("uuid") uid: string;
@@ -27,19 +58,25 @@ export class EventEntity {
   description: string;
 
   @Column()
-  type: string;
+  type: EventType;
+
+  @Column()
+  module: ModuleType;
 
   @Column({ nullable: true })
-  place: string;
+  faculty: string;
 
-  @Column()
+  @Column({ nullable: true })
+  link: string;
+
+  @Column({ nullable: true })
   reward: number;
 
-  @Column()
-  placesLeft: number;
+  @Column({ nullable: true })
+  limit: number;
 
-  @Column({ default: false })
-  userIsJoined: boolean;
+  @Column({ nullable: true })
+  placesLeft: number;
 
   @OneToMany(
     () => EventTagEntity,
@@ -50,9 +87,6 @@ export class EventEntity {
   )
   @JoinColumn()
   eventTags: EventTagEntity[];
-
-  @Column("simple-json")
-  tags: string[];
 
   @Column()
   startsAt: Date;

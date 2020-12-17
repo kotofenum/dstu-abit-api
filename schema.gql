@@ -160,14 +160,42 @@ type EventDto {
   uid: String!
   title: String!
   description: String
-  type: String!
-  place: String
-  reward: Float!
-  placesLeft: Float!
-  userIsJoined: Boolean!
-  tags: JSON
+  type: EventType!
+  module: ModuleType!
+  faculty: String
+  link: String
+  reward: Float
+  limit: Float
+  placesLeft: Float
   startsAt: DateTime!
   endsAt: DateTime!
+}
+
+enum EventType {
+  presentation
+  discussion
+  roundTable
+  webinar
+  workshop
+  masterClass
+  lecture
+  quiz
+  video
+  tour
+  olympiad
+  consultation
+  meeting
+  presentationQuiz
+  roomToor
+}
+
+enum ModuleType {
+  dstuOnline
+  talents
+  helloFaculty
+  admissionsCampaign
+  preUniversity
+  sportLeisureMore
 }
 
 type MajorDto {
@@ -344,8 +372,6 @@ type Mutation {
   createUserTraining(input: UserTrainingInput!): UserTrainingDto!
   finishUserTraining(uid: ID!): UserTrainingDto!
   addEvent(input: EventInput!): EventDto!
-  joinEvent(input: JoinEventInput!): EventDto!
-  leftEvent(input: JoinEventInput!): EventDto!
   addMajor(input: MajorInput!): MajorDto!
   addSpecialty(input: SpecialtyInput!): SpecialtyDto!
   addProgram(input: ProgramInput!): ProgramDto!
@@ -436,18 +462,15 @@ input UserTrainingInput {
 input EventInput {
   title: String!
   description: String
-  type: String!
-  place: String
-  reward: Float!
-  placesLeft: Float!
-  userIsJoined: Boolean!
-  tags: JSON!
+  type: EventType!
+  module: ModuleType!
+  faculty: String
+  link: String
+  reward: Float
+  limit: Float
+  placesLeft: Float
   startsAt: DateTime!
   endsAt: DateTime!
-}
-
-input JoinEventInput {
-  eventId: String!
 }
 
 input MajorInput {

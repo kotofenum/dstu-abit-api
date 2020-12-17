@@ -1,5 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import graphqlTypeJson from "graphql-type-json";
+import { EventType, ModuleType } from "../entities/event.entity";
 
 @ObjectType()
 export class EventDto {
@@ -12,23 +12,26 @@ export class EventDto {
   @Field({ nullable: true })
   readonly description: string;
 
-  @Field()
-  readonly type: string;
+  @Field(() => EventType)
+  readonly type: EventType;
+
+  @Field(() => ModuleType)
+  readonly module: ModuleType;
 
   @Field({ nullable: true })
-  readonly place: string;
+  readonly faculty: string;
 
-  @Field()
+  @Field({ nullable: true })
+  readonly link: string;
+
+  @Field({ nullable: true })
   readonly reward: number;
 
-  @Field()
+  @Field({ nullable: true })
+  readonly limit: number;
+
+  @Field({ nullable: true })
   readonly placesLeft: number;
-
-  @Field()
-  readonly userIsJoined: boolean;
-
-  @Field(() => graphqlTypeJson, { nullable: true })
-  readonly tags: string[];
 
   @Field()
   readonly startsAt: Date;

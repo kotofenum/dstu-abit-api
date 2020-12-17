@@ -29,16 +29,16 @@ export class EventsResolver {
     @AuthUser() user: UserEntity
   ): Promise<EventDto> {
     console.log(input);
-    return this.eventsService.createEvent(input, user);
+    return this.eventsService.createEvent(input);
   }
 
-  @Mutation(() => EventDto)
-  async joinEvent(@Args("input") input: JoinEventInput): Promise<EventDto> {
-    return this.eventsService.joinEvent(input)
-  }
+  // @Mutation(() => EventDto)
+  // async joinEvent(@Args("input") input: JoinEventInput): Promise<EventDto> {
+  //   return this.eventsService.joinEvent(input)
+  // }
 
-  @Mutation(() => EventDto)
-  async leftEvent(@Args("input") input: JoinEventInput): Promise<EventDto> {
-    return this.eventsService.leftEvent(input)
-  }
+  // @Mutation(() => EventDto)
+  // async leftEvent(@Args("input") input: JoinEventInput): Promise<EventDto> {
+  //   return this.eventsService.leftEvent(input)
+  // }
 }
