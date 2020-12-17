@@ -10,7 +10,20 @@ import { UserEntity } from "../users/entities/user.entity";
 import { UsersService } from "../users/users.service";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CodeEntity, UserEntity]), AuthModule, HttpModule.register({})],
+  imports: [
+    TypeOrmModule.forFeature([CodeEntity, UserEntity]),
+    AuthModule,
+    HttpModule.register({
+      proxy: {
+        host: "proxy.dstu.local",
+        port: 3128,
+        auth: {
+          username: process.env.PROXY_USER,
+          password: process.env.PROXY_PASS,
+        },
+      },
+    }),
+  ],
   providers: [CodesResolver, CodesService, AuthGuard, UsersService],
   exports: [CodesService, AuthGuard],
 })
