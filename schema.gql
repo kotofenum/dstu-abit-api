@@ -62,6 +62,7 @@ type TransactionDto {
 
 type CodeDto {
   uid: String!
+  code: String!
   phone: String!
   expireAt: DateTime!
   issuer: UserDto!
@@ -308,6 +309,7 @@ type ProgramSubjectDto {
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
+  me: UserDto!
   code(uid: ID!): CodeDto!
   wallets: [WalletDto!]!
   myWallets: [WalletDto!]!

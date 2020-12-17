@@ -43,11 +43,15 @@ export class UsersResolver {
     return this.usersService.getUserById(uid);
   }
 
+  @Query(() => UserDto)
+  @UseGuards(AuthGuard)
+  async me(@AuthUser() user: UserEntity): Promise<UserDto> {
+    return this.usersService.getUserById(user.uid);
+  }
+
   @Mutation(() => UserDto)
-  async createUser(
-    @Args("input") input: CreateUserInput
-  ): Promise<UserDto> {
-      return this.usersService.upsertUser(input);
+  async createUser(@Args("input") input: CreateUserInput): Promise<UserDto> {
+    return this.usersService.upsertUser(input);
   }
 
   @Mutation(() => UserDto)
@@ -56,9 +60,8 @@ export class UsersResolver {
     @Args("input") input: UpdateUserInput,
     @AuthUser() user: UserEntity
   ): Promise<UserDto> {
-      return this.usersService.updateUser(input, user);
+    return this.usersService.updateUser(input, user);
   }
-
 
   // @Mutation(() => UserDto)
   // async confirmCode(

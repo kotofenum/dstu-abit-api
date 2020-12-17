@@ -24,7 +24,7 @@ export class CodesService {
   async createCode(data: CodeInput, user: UserEntity): Promise<CodeEntity> {
     const code = cryptoRandomString({ length: 5, type: "numeric" });
     console.log(code);
-    await this.sendCodeViaSMS(data.phone, code);
+    // await this.sendCodeViaSMS(data.phone, code);
 
     return await this.codesRepository.save({
       phone: data.phone,

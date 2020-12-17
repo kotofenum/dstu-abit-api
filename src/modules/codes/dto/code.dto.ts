@@ -7,6 +7,9 @@ export class CodeDto {
   readonly uid: string;
 
   @Field()
+  readonly code: string;
+
+  @Field()
   readonly phone: string;
 
   @Field()
