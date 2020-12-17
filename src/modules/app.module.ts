@@ -50,6 +50,7 @@ import { CodesModule } from './codes/codes.module';
     UserTagsModule,
     EventTagsModule,
     CodesModule,
+    SpecialtiesModule,
     AuthModule
   ],
   controllers: [AppController],
