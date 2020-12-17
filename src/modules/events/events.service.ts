@@ -3,6 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { EventInput } from "./inputs/event.input";
+import { MajorsService } from "../majors/majors.service";
 
 const evnts = [];
 
@@ -57,6 +58,9 @@ export class EventsService {
 
   async getEventsByIds(ids: string[]): Promise<EventEntity[]> {
     return await this.eventsRepository.findByIds(ids);
+  }
+  async getEventByTitle(title: string): Promise<EventEntity> {
+    return await this.eventsRepository.findOne({ where: { title: title } });
   }
 
   // async joinEvent(data: JoinEventInput): Promise<EventEntity> {

@@ -21,6 +21,8 @@ import { EventEntity } from "../events/entities/event.entity";
 import { EventsService } from "../events/events.service";
 import { UserTagsService } from "../user-tags/user-tags.service";
 
+const evnts = [];
+
 @Injectable()
 export class EventTagsService {
   constructor(
@@ -56,6 +58,20 @@ export class EventTagsService {
     }
   }
 
+  async populateTags() {
+    for (const event of evnts) {
+      const vnt = await this.eventsService.getEventByTitle(event.name);
+      for (const majorCode of event.specialtyCodes || []) {
+        const major = await this.majorsService.getMajorByCode(majorCode);
+        await this.createEventTag({
+          relationId: major.uid,
+          relationType: TagRelationType.major,
+          eventId: vnt.uid,
+        });
+      }
+    }
+  }
+
   async createEventTag(data: EventTagInput): Promise<EventTagEntity> {
     const relationId = await this.getTagIdFromInput(data);
 
@@ -69,6 +85,14 @@ export class EventTagsService {
 
     if (!event) {
       throw new BadRequestException("No event found with such id");
+    }
+
+    const currentTag = await this.eventTagsRepository.findOne({
+      where: { relationId, relationType: data.relationType },
+    });
+
+    if (currentTag) {
+      return currentTag;
     }
 
     return await this.eventTagsRepository.save({

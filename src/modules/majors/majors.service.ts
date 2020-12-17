@@ -53,6 +53,12 @@ export class MajorsService {
     });
   }
 
+  async getMajorByCode(code: string): Promise<MajorEntity> {
+    return await this.majorsRepository.findOne({
+      where: { code: code },
+    });
+  }
+
   async getMajorById(id: string): Promise<MajorEntity> {
     return await this.majorsRepository.findOne(id);
   }
