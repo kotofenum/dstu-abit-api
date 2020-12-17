@@ -1,4 +1,4 @@
-import { MajorEntity } from "src/modules/majors/entities/major.entity";
+import { MajorEntity, PlacesMeta } from "src/modules/majors/entities/major.entity";
 import { ProgramEntity } from "src/modules/programs/entities/program.entity";
 import {
   Entity,
@@ -21,6 +21,24 @@ export class SpecialtyEntity {
 
   @Column({ unique: true })
   code: string;
+
+  @Column({ nullable: true })
+  fullTimePlaces: number;
+
+  @Column({ nullable: true })
+  fullTimeMeta: PlacesMeta;
+
+  @Column({ nullable: true })
+  mixedPlaces: number;
+
+  @Column({ nullable: true })
+  mixedMeta: PlacesMeta;
+
+  @Column({ nullable: true })
+  extramuralPlaces: number;
+
+  @Column({ nullable: true })
+  extramuralMeta: PlacesMeta;
 
   @ManyToOne(
     () => MajorEntity,

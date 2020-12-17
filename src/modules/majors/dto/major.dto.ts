@@ -17,4 +17,16 @@ export class MajorDto {
 
   @Field(() => PlacesMeta)
   readonly fullTimeMeta: PlacesMeta;
+
+  @Field()
+  readonly mixedPlaces: number;
+
+  @Field(() => PlacesMeta)
+  readonly mixedMeta: PlacesMeta;
+
+  @Field()
+  readonly extramuralPlaces: number;
+
+  @Field(() => PlacesMeta)
+  readonly extramuralMeta: PlacesMeta;
 }

@@ -1,4 +1,5 @@
 import { Field, InputType } from "@nestjs/graphql";
+import { PlacesMeta } from "../entities/major.entity";
 
 @InputType()
 export class MajorInput {
@@ -9,5 +10,20 @@ export class MajorInput {
   readonly code: string;
 
   @Field()
-  readonly fundedPlaces: number;
+  readonly fullTimePlaces: number;
+
+  @Field(() => PlacesMeta)
+  readonly fullTimeMeta: PlacesMeta;
+
+  @Field()
+  readonly mixedPlaces: number;
+
+  @Field(() => PlacesMeta)
+  readonly mixedMeta: PlacesMeta;
+
+  @Field()
+  readonly extramuralPlaces: number;
+
+  @Field(() => PlacesMeta)
+  readonly extramuralMeta: PlacesMeta;
 }

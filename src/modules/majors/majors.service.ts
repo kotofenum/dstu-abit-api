@@ -16,7 +16,6 @@ export class MajorsService {
     return await this.majorsRepository.save({
       title: data.title,
       code: data.code,
-      fundedPlaces: data.fundedPlaces,
     });
   }
 

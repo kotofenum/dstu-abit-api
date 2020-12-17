@@ -176,6 +176,10 @@ type MajorDto {
   code: String!
   fullTimePlaces: Float!
   fullTimeMeta: PlacesMeta!
+  mixedPlaces: Float!
+  mixedMeta: PlacesMeta!
+  extramuralPlaces: Float!
+  extramuralMeta: PlacesMeta!
 }
 
 enum PlacesMeta {
@@ -192,6 +196,12 @@ type SpecialtyDto {
   title: String!
   code: String!
   major: MajorDto!
+  fullTimePlaces: Float!
+  fullTimeMeta: PlacesMeta!
+  mixedPlaces: Float!
+  mixedMeta: PlacesMeta!
+  extramuralPlaces: Float!
+  extramuralMeta: PlacesMeta!
 }
 
 type ProgramDto {
@@ -407,13 +417,24 @@ input JoinEventInput {
 input MajorInput {
   title: String!
   code: String!
-  fundedPlaces: Float!
+  fullTimePlaces: Float!
+  fullTimeMeta: PlacesMeta!
+  mixedPlaces: Float!
+  mixedMeta: PlacesMeta!
+  extramuralPlaces: Float!
+  extramuralMeta: PlacesMeta!
 }
 
 input SpecialtyInput {
   title: String!
   code: String!
   majorId: String!
+  fullTimePlaces: Float!
+  fullTimeMeta: PlacesMeta!
+  mixedPlaces: Float!
+  mixedMeta: PlacesMeta!
+  extramuralPlaces: Float!
+  extramuralMeta: PlacesMeta!
 }
 
 input ProgramInput {
