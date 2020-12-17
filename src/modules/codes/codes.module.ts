@@ -8,20 +8,21 @@ import { UsersModule } from "../users/users.module";
 import { AuthModule } from "../auth/auth.module";
 import { UserEntity } from "../users/entities/user.entity";
 import { UsersService } from "../users/users.service";
-
+const proxy = {
+  host: process.env.PROXY_HOST,
+  port: 3128,
+  auth: {
+    username: process.env.PROXY_USER,
+    password: process.env.PROXY_PASS,
+  },
+};
+console.log(proxy);
 @Module({
   imports: [
     TypeOrmModule.forFeature([CodeEntity, UserEntity]),
     AuthModule,
     HttpModule.register({
-      proxy: {
-        host: process.env.PROXY_HOST,
-        port: 3128,
-        auth: {
-          username: process.env.PROXY_USER,
-          password: process.env.PROXY_PASS,
-        },
-      },
+      proxy: proxy,
     }),
   ],
   providers: [CodesResolver, CodesService, AuthGuard, UsersService],
