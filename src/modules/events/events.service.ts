@@ -4,6 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { EventInput } from "./inputs/event.input";
 import { MajorsService } from "../majors/majors.service";
+import { EditEventInput } from "./inputs/edit-event.input";
 
 const evnts = [];
 
@@ -28,6 +29,13 @@ export class EventsService {
       startsAt: data.startsAt,
       endsAt: data.endsAt,
     });
+  }
+
+  async editEvent(data: EditEventInput): Promise<EventEntity> {
+    const event = await this.eventsRepository.findOne(data.eventId);
+    event.description = data.description;
+
+    return await this.eventsRepository.save(event);
   }
 
   async populate() {

@@ -384,6 +384,7 @@ type Mutation {
   createUserTraining(input: UserTrainingInput!): UserTrainingDto!
   finishUserTraining(uid: ID!): UserTrainingDto!
   addEvent(input: EventInput!): EventDto!
+  editEvent(input: EditEventInput!): EventDto!
   addMajor(input: MajorInput!): MajorDto!
   addSpecialty(input: SpecialtyInput!): SpecialtyDto!
   addProgram(input: ProgramInput!): ProgramDto!
@@ -484,6 +485,11 @@ input EventInput {
   placesLeft: Float
   startsAt: DateTime!
   endsAt: DateTime!
+}
+
+input EditEventInput {
+  eventId: String!
+  description: String
 }
 
 input MajorInput {
