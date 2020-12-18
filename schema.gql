@@ -307,6 +307,19 @@ type ProgramSubjectDto {
   subject: SubjectDto!
 }
 
+type TourDto {
+  uid: String!
+  title: String!
+  description: String!
+  videoId: String!
+  type: TourType!
+}
+
+enum TourType {
+  inhouse
+  partner
+}
+
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
@@ -352,6 +365,8 @@ type Query {
   programSubjects: [ProgramSubjectDto!]!
   subjects: [SubjectDto!]!
   subject(uid: ID!): SubjectDto!
+  tours: [TourDto!]!
+  tour(uid: ID!): TourDto!
 }
 
 input ModuleEventsInput {
@@ -392,6 +407,7 @@ type Mutation {
   removeUserTag(input: UserTagInput!): UserTagResultDto!
   createEventTag(input: EventTagInput!): EventTagDto!
   addSubject(input: SubjectInput!): SubjectDto!
+  addTour(input: TourInput!): TourDto!
 }
 
 input CreateUserInput {
@@ -555,6 +571,13 @@ input EventTagInput {
 
 input SubjectInput {
   title: String!
+}
+
+input TourInput {
+  title: String!
+  description: String!
+  videoId: String!
+  type: TourType!
 }
 
 type Subscription {

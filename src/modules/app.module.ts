@@ -23,6 +23,7 @@ import { EventTagsModule } from './event-tags/event-tags.module';
 import { CodesModule } from './codes/codes.module';
 import { ProgramSubjectsModule } from './program-subjects/program-subjects.module';
 import { SubjectsModule } from './subjects/subjects.module';
+import { ToursModule } from './tours/tours.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { SubjectsModule } from './subjects/subjects.module';
     CodesModule,
     SubjectsModule,
     ProgramSubjectsModule,
+    ToursModule,
     AuthModule
   ],
   controllers: [AppController],
