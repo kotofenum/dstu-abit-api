@@ -8,4 +8,10 @@ export class EditEventInput {
 
   @Field({ nullable: true })
   readonly description: string;
+  
+  @Field({ nullable: true })
+  readonly title: string;
+
+  @Field({ nullable: true })
+  readonly link: string;
 }

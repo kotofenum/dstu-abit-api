@@ -33,7 +33,15 @@ export class EventsService {
 
   async editEvent(data: EditEventInput): Promise<EventEntity> {
     const event = await this.eventsRepository.findOne(data.eventId);
-    event.description = data.description;
+    if (data.description) {
+      event.description = data.description;
+    }
+    if (data.title) {
+      event.title = data.title;
+    }
+    if (data.link) {
+      event.link = data.link;
+    }
 
     return await this.eventsRepository.save(event);
   }

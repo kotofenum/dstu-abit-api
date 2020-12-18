@@ -490,6 +490,8 @@ input EventInput {
 input EditEventInput {
   eventId: String!
   description: String
+  title: String
+  link: String
 }
 
 input MajorInput {
