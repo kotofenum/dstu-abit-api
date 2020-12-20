@@ -1,3 +1,4 @@
+import { VisitEntity } from './../../visits/entities/visit.entity';
 import { registerEnumType } from "@nestjs/graphql";
 import { ChallengePassEntity } from "src/modules/challenge-passes/entities/challenge-pass.entity";
 import { CodeEntity } from "src/modules/codes/entities/code.entity";
@@ -102,6 +103,16 @@ export class UserEntity {
   )
   @JoinColumn()
   wallets: WalletEntity[];
+
+  @OneToMany(
+    () => VisitEntity,
+    (visit) => visit.user,
+    {
+      cascade: true,
+    }
+  )
+  @JoinColumn()
+  visits: VisitEntity[];
 
   @OneToMany(
     () => ExerciseOriginEntity,

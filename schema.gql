@@ -320,6 +320,12 @@ enum TourType {
   partner
 }
 
+type VisitDto {
+  uid: String!
+  user: UserDto!
+  event: EventDto!
+}
+
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
@@ -367,6 +373,8 @@ type Query {
   subject(uid: ID!): SubjectDto!
   tours: [TourDto!]!
   tour(uid: ID!): TourDto!
+  visits: [VisitDto!]!
+  visit(uid: ID!): VisitDto!
 }
 
 input ModuleEventsInput {
@@ -408,6 +416,7 @@ type Mutation {
   createEventTag(input: EventTagInput!): EventTagDto!
   addSubject(input: SubjectInput!): SubjectDto!
   addTour(input: TourInput!): TourDto!
+  addVisit(input: VisitInput!): VisitDto!
 }
 
 input CreateUserInput {
@@ -578,6 +587,10 @@ input TourInput {
   description: String!
   videoId: String!
   type: TourType!
+}
+
+input VisitInput {
+  eventId: String!
 }
 
 type Subscription {

@@ -1,5 +1,5 @@
 import { Field, InputType } from "@nestjs/graphql";
-import { EventType, ModuleType } from "../entities/event.entity";
+import { ModuleType } from "../entities/event.entity";
 
 @InputType()
 export class ModuleEventsInput {

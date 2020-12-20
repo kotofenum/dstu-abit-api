@@ -24,6 +24,7 @@ import { CodesModule } from './codes/codes.module';
 import { ProgramSubjectsModule } from './program-subjects/program-subjects.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { ToursModule } from './tours/tours.module';
+import { VisitsModule } from './visits/visits.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { ToursModule } from './tours/tours.module';
     SubjectsModule,
     ProgramSubjectsModule,
     ToursModule,
+    VisitsModule,
     AuthModule
   ],
   controllers: [AppController],

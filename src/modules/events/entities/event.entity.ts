@@ -1,5 +1,6 @@
 import { registerEnumType } from "@nestjs/graphql";
 import { EventTagEntity } from "src/modules/event-tags/entities/event-tag.entity";
+import { VisitEntity } from "src/modules/visits/entities/visit.entity";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -88,6 +89,16 @@ export class EventEntity {
   )
   @JoinColumn()
   eventTags: EventTagEntity[];
+
+  @OneToMany(
+    () => VisitEntity,
+    (visit) => visit.user,
+    {
+      cascade: true,
+    }
+  )
+  @JoinColumn()
+  visits: VisitEntity[];
 
   @Column()
   startsAt: Date;
