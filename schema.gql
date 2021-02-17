@@ -581,10 +581,18 @@ input EventInput {
 }
 
 input EditEventInput {
-  eventId: String!
+  title: String!
   description: String
-  title: String
+  type: EventType!
+  module: ModuleType!
+  faculty: String
   link: String
+  reward: Float
+  limit: Float
+  placesLeft: Float
+  startsAt: DateTime!
+  endsAt: DateTime!
+  eventId: String!
 }
 
 input MajorInput {

@@ -1,17 +1,9 @@
 import graphqlTypeJson from "graphql-type-json";
 import { Field, InputType } from "@nestjs/graphql";
+import { EventInput } from "./event.input";
 
 @InputType()
-export class EditEventInput {
+export class EditEventInput extends EventInput {
   @Field()
   readonly eventId: string;
-
-  @Field({ nullable: true })
-  readonly description: string;
-  
-  @Field({ nullable: true })
-  readonly title: string;
-
-  @Field({ nullable: true })
-  readonly link: string;
 }

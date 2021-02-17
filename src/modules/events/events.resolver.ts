@@ -64,7 +64,6 @@ export class EventsResolver {
     console.log(input);
     return this.eventsService.createEvent(input);
   }
-
   @Mutation(() => EventDto)
   async editEvent(
     @Args("input") input: EditEventInput,
@@ -73,6 +72,15 @@ export class EventsResolver {
     console.log(input);
     return this.eventsService.editEvent(input);
   }
+
+  // @Mutation(() => EventDto)
+  // async editEvent(
+  //   @Args("input") input: EditEventInput,
+  //   @AuthUser() user: UserEntity
+  // ): Promise<EventDto> {
+  //   console.log(input);
+  //   return this.eventsService.editEvent(input);
+  // }
 
   // @Mutation(() => EventDto)
   // async joinEvent(@Args("input") input: JoinEventInput): Promise<EventDto> {
