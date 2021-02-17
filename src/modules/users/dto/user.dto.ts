@@ -54,6 +54,9 @@ export class UserDto {
   @Field()
   readonly phoneVerified: boolean;
 
+  @Field()
+  readonly isAdmin: boolean;
+
   @Field({ nullable: true })
   readonly picture: string;
 }

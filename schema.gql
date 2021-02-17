@@ -20,6 +20,7 @@ type UserDto {
   phone: String!
   emailVerified: Boolean!
   phoneVerified: Boolean!
+  isAdmin: Boolean!
   picture: String
 }
 

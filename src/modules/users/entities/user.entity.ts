@@ -92,6 +92,12 @@ export class UserEntity {
   })
   phoneVerified: boolean;
 
+  @Index()
+  @Column({
+    default: false,
+  })
+  isAdmin: boolean;
+
   @Column({ nullable: true })
   picture: string;
 
