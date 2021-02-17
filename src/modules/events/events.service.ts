@@ -5,6 +5,7 @@ import { Repository } from "typeorm";
 import { EventInput } from "./inputs/event.input";
 import { MajorsService } from "../majors/majors.service";
 import { EditEventInput } from "./inputs/edit-event.input";
+import { UserEntity } from "../users/entities/user.entity";
 
 const evnts = [];
 
@@ -69,7 +70,9 @@ export class EventsService {
   }
 
   async getEventById(id: string): Promise<EventEntity> {
-    return await this.eventsRepository.findOne(id);
+    return await this.eventsRepository.findOne(id, {
+      relations: ["userEvents", "userEvents.user"],
+    });
   }
 
   async getEventsByIds(ids: string[]): Promise<EventEntity[]> {

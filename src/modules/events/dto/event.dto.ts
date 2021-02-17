@@ -33,6 +33,9 @@ export class EventDto {
   @Field({ nullable: true })
   readonly placesLeft: number;
 
+  @Field({ nullable: true })
+  readonly userIsGoing?: boolean;
+
   @Field()
   readonly startsAt: Date;
 

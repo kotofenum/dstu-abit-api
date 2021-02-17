@@ -12,4 +12,10 @@ export class ProgramSubjectDto {
 
   @Field()
   readonly subject: SubjectDto;
+
+  @Field()
+  readonly required: boolean;
+
+  @Field()
+  readonly score: number;
 }

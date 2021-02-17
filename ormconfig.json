@@ -2,12 +2,12 @@
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "database": "webdb",
+  "database": "dstu",
   "username": "webdb_user",
   "password": "webdb_pass",
   "entities": [
     "dist/**/*.entity.js"
   ],
-  "synchronize": false,
+  "synchronize": true,
   "logging": false
 }

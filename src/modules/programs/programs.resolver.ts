@@ -10,6 +10,7 @@ import { UserEntity } from "../users/entities/user.entity";
 import { SpecialtiesService } from "../specialties/specialties.service";
 import { MajorsService } from "../majors/majors.service";
 import { ProgramsOfSpecialtyInput } from "./inputs/programsOfSpecialty.input";
+import { ProgramWithSubjectsDto } from "./dto/program-with-subjects.dto";
 
 @Resolver(() => ProgramEntity)
 export class ProgramsResolver {
@@ -21,6 +22,11 @@ export class ProgramsResolver {
   @Query(() => [ProgramDto])
   async programs(): Promise<ProgramDto[]> {
     return this.programsService.getPrograms();
+  }
+
+  @Query(() => [ProgramWithSubjectsDto])
+  async programsWithSubjects(): Promise<ProgramWithSubjectsDto[]> {
+    return this.programsService.getProgramsWithSubjects();
   }
 
   @Query(() => ProgramDto)

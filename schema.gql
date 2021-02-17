@@ -168,6 +168,7 @@ type EventDto {
   reward: Float
   limit: Float
   placesLeft: Float
+  userIsGoing: Boolean
   startsAt: DateTime!
   endsAt: DateTime!
 }
@@ -266,6 +267,46 @@ enum ProgramDegree {
   master
 }
 
+type SubjectDto {
+  uid: String!
+  title: String!
+}
+
+type ProgramSubjectDto {
+  uid: String!
+  program: ProgramDto!
+  subject: SubjectDto!
+  required: Boolean!
+  score: Float!
+}
+
+type ProgramWithSubjectsDto {
+  uid: String!
+  title: String!
+  specialty: SpecialtyDto!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
+  fullTimeForm: Boolean!
+  mixedForm: Boolean!
+  extramuralForm: Boolean!
+  degree: ProgramDegree!
+  studyPeriod: String!
+  languages: String!
+  description: String
+  advantages: String
+  partners: String
+  projectsAndPractices: String
+  leadProfessors: String
+  graduates: String
+  unit: String
+  supervisor: String
+  subjects: [ProgramSubjectDto!]!
+}
+
 type UserTagDto {
   uid: String!
   relationId: String!
@@ -296,17 +337,6 @@ type EventTagDto {
   relationType: TagRelationType!
 }
 
-type SubjectDto {
-  uid: String!
-  title: String!
-}
-
-type ProgramSubjectDto {
-  uid: String!
-  program: ProgramDto!
-  subject: SubjectDto!
-}
-
 type TourDto {
   uid: String!
   title: String!
@@ -324,6 +354,13 @@ type VisitDto {
   uid: String!
   user: UserDto!
   event: EventDto!
+}
+
+type UserEventDto {
+  uid: String!
+  user: UserDto!
+  event: EventDto!
+  attending: Boolean!
 }
 
 type Query {
@@ -361,6 +398,7 @@ type Query {
   specialty(uid: ID!): SpecialtyDto!
   specialtiesOfMajor(input: SpecialtiesOfMajorInput!): [SpecialtyDto!]!
   programs: [ProgramDto!]!
+  programsWithSubjects: [ProgramWithSubjectsDto!]!
   program(uid: ID!): ProgramDto!
   programsOfSpecialty(input: ProgramsOfSpecialtyInput!): [ProgramDto!]!
   userTags: [UserTagDto!]!
@@ -369,12 +407,16 @@ type Query {
   eventTags: [EventTagDto!]!
   eventsForUserTags: [EventDto!]!
   programSubjects: [ProgramSubjectDto!]!
+  tieSubj: ProgramSubjectDto!
   subjects: [SubjectDto!]!
   subject(uid: ID!): SubjectDto!
   tours: [TourDto!]!
   tour(uid: ID!): TourDto!
   visits: [VisitDto!]!
   visit(uid: ID!): VisitDto!
+  userEvents: [UserEventDto!]!
+  myUserEvents: [UserEventDto!]!
+  userEvent(uid: ID!): UserEventDto!
 }
 
 input ModuleEventsInput {
@@ -417,6 +459,8 @@ type Mutation {
   addSubject(input: SubjectInput!): SubjectDto!
   addTour(input: TourInput!): TourDto!
   addVisit(input: VisitInput!): VisitDto!
+  visitEvent(input: UserEventInput!): UserEventDto!
+  leaveEvent(input: UserEventInput!): UserEventDto!
 }
 
 input CreateUserInput {
@@ -590,6 +634,10 @@ input TourInput {
 }
 
 input VisitInput {
+  eventId: String!
+}
+
+input UserEventInput {
   eventId: String!
 }
 

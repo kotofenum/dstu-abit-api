@@ -11,8 +11,8 @@ import {
   ManyToOne,
 } from "typeorm";
 
-@Entity("visits")
-export class VisitEntity {
+@Entity("user-events")
+export class UserEventEntity {
   @PrimaryGeneratedColumn("uuid") uid: string;
 
   @ManyToOne(
@@ -32,7 +32,10 @@ export class VisitEntity {
     }
   )
   event: EventEntity;
-  
+
+  @Column({ default: false })
+  attending: boolean;
+
   @CreateDateColumn()
   dateCreated: Date;
 

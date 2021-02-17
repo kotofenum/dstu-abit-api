@@ -10,6 +10,7 @@ import { SpecialtiesModule } from "../specialties/specialties.module";
 import { ProgramsModule } from "../programs/programs.module";
 import { UserTagsModule } from "../user-tags/user-tags.module";
 import { EventsModule } from "../events/events.module";
+import { SubjectsModule } from "../subjects/subjects.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { EventsModule } from "../events/events.module";
     MajorsModule,
     SpecialtiesModule,
     ProgramsModule,
+    SubjectsModule,
     EventsModule,
     UserTagsModule,
   ],

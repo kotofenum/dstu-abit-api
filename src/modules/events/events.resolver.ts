@@ -10,6 +10,7 @@ import { UserEntity } from "../users/entities/user.entity";
 import { JoinEventInput } from "./inputs/join-event.input";
 import { ModuleEventsInput } from "./inputs/moduleEvents.input";
 import { EditEventInput } from "./inputs/edit-event.input";
+import { AuthSoftGuard } from "src/guards/auth-soft.guard";
 
 @Resolver(() => EventEntity)
 export class EventsResolver {
@@ -28,8 +29,31 @@ export class EventsResolver {
   }
 
   @Query(() => EventDto)
-  async event(@Args("uid", { type: () => ID }) uid: string): Promise<EventDto> {
-    return this.eventsService.getEventById(uid);
+  @UseGuards(AuthSoftGuard)
+  async event(
+    @Args("uid", { type: () => ID }) uid: string,
+    @AuthUser() user?: UserEntity
+  ): Promise<EventDto> {
+    const event = await this.eventsService.getEventById(uid);
+    console.log('usa', user)
+    console.log(
+      event.userEvents
+        .filter((userEvent) => {
+          console.log(userEvent.user.uid)
+          userEvent.user.uid === user?.uid;
+          return true
+        })
+        .some((userEvent) => userEvent.attending)
+    );
+    return {
+      ...event,
+      placesLeft:
+        event.placesLeft -
+        (event.userEvents.filter((event) => event.attending).length || 0),
+      userIsGoing: event.userEvents
+        .filter((userEvent) => userEvent.user.uid === user?.uid)
+        .some((userEvent) => userEvent.attending),
+    };
   }
 
   @Mutation(() => EventDto)

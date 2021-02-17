@@ -19,4 +19,10 @@ export class ProgramSubjectsResolver {
   ): Promise<ProgramSubjectDto> {
     return this.programSubjectsService.getProgramSubjectById(uid);
   }
+
+  @Query(() => ProgramSubjectDto)
+  async tieSubj(): Promise<ProgramSubjectDto[]> {
+    this.programSubjectsService.tieSubjcts();
+    return [];
+  }
 }

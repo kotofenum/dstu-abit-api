@@ -33,12 +33,12 @@ export class ProgramSubjectEntity {
   )
   subject: SubjectEntity;
 
-  @Column()
-  relationId: string;
-
   // @Index() // TODO: почему?
+  @Column({ default: false })
+  required: boolean;
+
   @Column()
-  relationType: TagRelationType;
+  score: number;
 
   @CreateDateColumn()
   dateCreated: Date;

@@ -32,4 +32,10 @@ export class SubjectsService {
   async getSubjectsByIds(ids: string[]): Promise<SubjectEntity[]> {
     return await this.subjectsRepository.findByIds(ids);
   }
+
+  async getSubjectByName(name: string): Promise<SubjectEntity> {
+    return await this.subjectsRepository.findOne({
+      where: { title: name?.charAt(0).toUpperCase() + name?.slice(1) },
+    });
+  }
 }

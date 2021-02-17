@@ -76,7 +76,7 @@ export class ProgramsService {
             extramuralForm: extramuralForm,
             degree: program.degree || "bachelor",
             studyPeriod: program.studyPeriod || "4 года",
-            languages: program.languages?.join(',') || "русский",
+            languages: program.languages?.join(",") || "русский",
             description: program.description,
             advantages: program.advantages,
             partners: program.partners,
@@ -107,6 +107,18 @@ export class ProgramsService {
   async getProgramsOfSpecialty(specialtyId: string): Promise<ProgramEntity[]> {
     return await this.programsRepository.find({
       where: { specialty: specialtyId },
+    });
+  }
+
+  async getProgramByName(name: string): Promise<ProgramEntity> {
+    return await this.programsRepository.findOne({
+      where: { title: name },
+    });
+  }
+
+  async getProgramsWithSubjects(): Promise<ProgramEntity[]> {
+    return await this.programsRepository.find({
+      relations: ["subjects"],
     });
   }
 }

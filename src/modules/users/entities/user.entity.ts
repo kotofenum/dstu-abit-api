@@ -76,7 +76,7 @@ export class UserEntity {
   @Column({ nullable: true })
   school: string;
 
-  @Column({ nullable: false }) // TODO: временно
+  @Column({ nullable: true }) // TODO: временно
   phone: string;
 
   @Index()
