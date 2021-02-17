@@ -24,6 +24,7 @@ import { WalletDto } from "../wallets/dto/wallet.dto";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 import { CreateUserInput } from "./inputs/create-user.input";
 import { UpdateUserInput } from "./inputs/update-user.input";
+import { EditUserInput } from "./inputs/edit-user.input";
 
 @Resolver(() => UserEntity)
 export class UsersResolver {
@@ -61,6 +62,15 @@ export class UsersResolver {
     @AuthUser() user: UserEntity
   ): Promise<UserDto> {
     return this.usersService.updateUser(input, user);
+  }
+
+  @Mutation(() => UserDto)
+  @UseGuards(AuthGuard)
+  async editUser(
+    @Args("input") input: EditUserInput,
+    @AuthUser() user: UserEntity
+  ): Promise<UserDto> {
+    return this.usersService.editUser(input, user);
   }
 
   // @Mutation(() => UserDto)

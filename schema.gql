@@ -434,6 +434,7 @@ input ProgramsOfSpecialtyInput {
 type Mutation {
   createUser(input: CreateUserInput!): UserDto!
   updateUser(input: UpdateUserInput!): UserDto!
+  editUser(input: EditUserInput!): UserDto!
   depositFunds(input: DepositFundsInput!): TransactionDto!
   withdrawFunds(input: WithdrawFundsInput!): TransactionDto!
   sendCode(input: CodeInput!): CodeDto!
@@ -478,6 +479,17 @@ input UpdateUserInput {
   email: String!
   pwd: String!
   school: String
+  position: String
+  child: String
+  course: String
+}
+
+input EditUserInput {
+  country: String
+  locality: String
+  birthDate: DateTime
+  school: String
+  email: String
   position: String
   child: String
   course: String

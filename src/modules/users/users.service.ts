@@ -9,6 +9,7 @@ import { CreateUserInput } from "./inputs/create-user.input";
 import { CodesService } from "../codes/codes.service";
 import { CodeEntity } from "../codes/entities/code.entity";
 import { UpdateUserInput } from "./inputs/update-user.input";
+import { EditUserInput } from "./inputs/edit-user.input";
 var jwt = require("jsonwebtoken");
 
 @Injectable()
@@ -56,9 +57,38 @@ export class UsersService {
     return await this.usersRepository.save(user);
   }
 
+  async editUser(data: EditUserInput, user: UserEntity): Promise<UserEntity> {
+    if (data.country) {
+      user.country = data.country;
+    }
+    if (data.locality) {
+      user.locality = data.locality;
+    }
+    if (data.birthDate) {
+      user.birthDate = data.birthDate;
+    }
+    if (data.email) {
+      user.email = data.email;
+    }
+    if (data.school) {
+      user.school = data.school;
+    }
+    if (data.position) {
+      user.position = data.position;
+    }
+    if (data.child) {
+      user.child = data.child;
+    }
+    if (data.course) {
+      user.course = data.course;
+    }
+
+    return await this.usersRepository.save(user);
+  }
+
   async confirmUser(user: UserEntity): Promise<UserEntity> {
-    user.phoneVerified = true
-    
+    user.phoneVerified = true;
+
     return await this.usersRepository.save(user);
   }
 
