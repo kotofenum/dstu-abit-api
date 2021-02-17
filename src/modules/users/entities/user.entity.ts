@@ -17,6 +17,7 @@ import {
   OneToMany,
   JoinColumn,
 } from "typeorm";
+import { PreuniversityRequestEntity } from 'src/modules/preuniversity-requests/entities/preuniversity-request.entity';
 
 
 export enum AccountType {
@@ -153,6 +154,16 @@ export class UserEntity {
   )
   @JoinColumn()
   tags: UserTagEntity[];
+  
+  @OneToMany(
+    () => PreuniversityRequestEntity,
+    (preuniversityRequest) => preuniversityRequest.user,
+    {
+      cascade: true,
+    }
+  )
+  @JoinColumn()
+  preuniversityRequests: PreuniversityRequestEntity[];
 
   @OneToMany(
     () => CodeEntity,

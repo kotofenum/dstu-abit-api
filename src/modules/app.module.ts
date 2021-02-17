@@ -26,6 +26,7 @@ import { SubjectsModule } from './subjects/subjects.module';
 import { ToursModule } from './tours/tours.module';
 import { VisitsModule } from './visits/visits.module';
 import { UserEventsModule } from './user-events/user-events.module';
+import { PreuniversityRequestsModule } from './preuniversity-requests/preuniversity-requests.module';
 
 @Module({
   imports: [
@@ -60,6 +61,7 @@ import { UserEventsModule } from './user-events/user-events.module';
     ToursModule,
     VisitsModule,
     UserEventsModule,
+    PreuniversityRequestsModule,
     AuthModule
   ],
   controllers: [AppController],

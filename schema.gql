@@ -363,6 +363,14 @@ type UserEventDto {
   attending: Boolean!
 }
 
+type PreuniversityRequestDto {
+  uid: String!
+  category: String!
+  subcategory: String
+  program: String!
+  user: UserDto!
+}
+
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
@@ -417,6 +425,8 @@ type Query {
   userEvents: [UserEventDto!]!
   myUserEvents: [UserEventDto!]!
   userEvent(uid: ID!): UserEventDto!
+  preuniversityRequests: [PreuniversityRequestDto!]!
+  preuniversityRequest(uid: ID!): PreuniversityRequestDto!
 }
 
 input ModuleEventsInput {
@@ -462,6 +472,7 @@ type Mutation {
   addVisit(input: VisitInput!): VisitDto!
   visitEvent(input: UserEventInput!): UserEventDto!
   leaveEvent(input: UserEventInput!): UserEventDto!
+  addPreuniversityRequest(input: PreuniversityRequestInput!): PreuniversityRequestDto!
 }
 
 input CreateUserInput {
@@ -651,6 +662,12 @@ input VisitInput {
 
 input UserEventInput {
   eventId: String!
+}
+
+input PreuniversityRequestInput {
+  category: String!
+  subcategory: String
+  program: String!
 }
 
 type Subscription {
