@@ -4,7 +4,7 @@ import { AuthService } from "src/modules/auth/auth.service";
 import { UsersService } from "src/modules/users/users.service";
 
 @Injectable()
-export class AdmimGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private readonly authService: AuthService) {}
 
   getRequest(context: ExecutionContext) {

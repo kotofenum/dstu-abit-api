@@ -372,6 +372,14 @@ type PreuniversityRequestDto {
   user: UserDto!
 }
 
+type GuidanceDto {
+  uid: String!
+  title: String!
+  date: String!
+  description: String!
+  link: String
+}
+
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
@@ -428,6 +436,8 @@ type Query {
   userEvent(uid: ID!): UserEventDto!
   preuniversityRequests: [PreuniversityRequestDto!]!
   preuniversityRequest(uid: ID!): PreuniversityRequestDto!
+  guidances: [GuidanceDto!]!
+  guidance(uid: ID!): GuidanceDto!
 }
 
 input ModuleEventsInput {
@@ -474,6 +484,8 @@ type Mutation {
   visitEvent(input: UserEventInput!): UserEventDto!
   leaveEvent(input: UserEventInput!): UserEventDto!
   addPreuniversityRequest(input: PreuniversityRequestInput!): PreuniversityRequestDto!
+  addGuidance(input: GuidanceInput!): GuidanceDto!
+  editGuidance(input: EditGuidanceInput!): GuidanceDto!
 }
 
 input CreateUserInput {
@@ -677,6 +689,21 @@ input PreuniversityRequestInput {
   category: String!
   subcategory: String
   program: String!
+}
+
+input GuidanceInput {
+  title: String!
+  date: String!
+  description: String!
+  link: String
+}
+
+input EditGuidanceInput {
+  uid: String!
+  title: String!
+  date: String!
+  description: String!
+  link: String
 }
 
 type Subscription {
