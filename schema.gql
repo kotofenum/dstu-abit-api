@@ -486,6 +486,7 @@ type Mutation {
   addPreuniversityRequest(input: PreuniversityRequestInput!): PreuniversityRequestDto!
   addGuidance(input: GuidanceInput!): GuidanceDto!
   editGuidance(input: EditGuidanceInput!): GuidanceDto!
+  populateGuidances: GuidanceDto!
 }
 
 input CreateUserInput {

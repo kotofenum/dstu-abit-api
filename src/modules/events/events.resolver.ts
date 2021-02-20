@@ -18,7 +18,7 @@ export class EventsResolver {
 
   @Query(() => [EventDto])
   async events(): Promise<EventDto[]> {
-    return this.eventsService.getEvents();
+    return this.eventsService.getActualEvents();
   }
 
   @Query(() => [EventDto])

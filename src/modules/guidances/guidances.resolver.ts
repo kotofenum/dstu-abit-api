@@ -36,4 +36,10 @@ export class GuidancesResolver {
   ): Promise<GuidanceDto> {
     return this.guidancesService.editGuidance(input);
   }
+
+  @Mutation(() => GuidanceDto)
+  @UseGuards(AdminGuard)
+  async populateGuidances(): Promise<GuidanceDto[]> {
+    return this.guidancesService.populate();
+  }
 }

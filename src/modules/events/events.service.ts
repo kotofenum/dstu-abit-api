@@ -1,11 +1,12 @@
 import { EventEntity, EventType, ModuleType } from "./entities/event.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { MoreThan, Repository } from "typeorm";
 import { EventInput } from "./inputs/event.input";
 import { MajorsService } from "../majors/majors.service";
 import { EditEventInput } from "./inputs/edit-event.input";
 import { UserEntity } from "../users/entities/user.entity";
+import moment from "moment";
 
 const evnts = [];
 
@@ -36,31 +37,31 @@ export class EventsService {
     const event = await this.eventsRepository.findOne(data.eventId);
 
     if (data.title) {
-      event.title = data.title
+      event.title = data.title;
     }
     if (data.startsAt) {
-      event.startsAt = data.startsAt
+      event.startsAt = data.startsAt;
     }
     if (data.endsAt) {
-      event.endsAt = data.endsAt
+      event.endsAt = data.endsAt;
     }
     if (data.type) {
-      event.type = data.type
+      event.type = data.type;
     }
     if (data.module) {
-      event.module = data.module
+      event.module = data.module;
     }
     if (data.reward) {
-      event.reward = data.reward
+      event.reward = data.reward;
     }
     if (data.limit) {
-      event.limit = data.limit
+      event.limit = data.limit;
     }
     if (data.link) {
-      event.link = data.link
+      event.link = data.link;
     }
     if (data.description) {
-      event.description = data.description
+      event.description = data.description;
     }
 
     return await this.eventsRepository.save(event);
@@ -86,6 +87,12 @@ export class EventsService {
 
   async getEvents(): Promise<EventEntity[]> {
     return await this.eventsRepository.find();
+  }
+
+  async getActualEvents(): Promise<EventEntity[]> {
+    return await this.eventsRepository.find({
+      where: { startsAt: MoreThan(moment().startOf('day').toDate()) },
+    });
   }
 
   async getEventById(id: string): Promise<EventEntity> {
