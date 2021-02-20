@@ -35,6 +35,9 @@ export class ProgramEntity {
   title: string;
 
   @Column({ nullable: true })
+  score: number;
+
+  @Column({ nullable: true })
   fullTimePlaces: number;
 
   @Column({ nullable: true })

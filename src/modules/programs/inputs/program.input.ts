@@ -7,9 +7,11 @@ export class ProgramInput {
   @Field()
   readonly title: string;
 
+  @Field({ nullable: true })
+  readonly score: number;
+
   @Field()
   readonly specialtyId: string;
-
 
   @Field({ nullable: true })
   readonly fullTimePlaces: number;

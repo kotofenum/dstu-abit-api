@@ -12,6 +12,9 @@ export class ProgramWithSubjectsDto {
   @Field()
   readonly title: string;
 
+  @Field({ nullable: true })
+  readonly score: number;
+  
   @Field()
   readonly specialty: SpecialtyDto;
 

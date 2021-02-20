@@ -11,6 +11,8 @@ import { SpecialtiesService } from "../specialties/specialties.service";
 import { MajorsService } from "../majors/majors.service";
 import { ProgramsOfSpecialtyInput } from "./inputs/programsOfSpecialty.input";
 import { ProgramWithSubjectsDto } from "./dto/program-with-subjects.dto";
+import { AdminGuard } from "src/guards/admin.guard";
+import { EditProgramInput } from "./inputs/edit-program.input";
 
 @Resolver(() => ProgramEntity)
 export class ProgramsResolver {
@@ -44,14 +46,24 @@ export class ProgramsResolver {
   }
 
   @Mutation(() => ProgramDto)
-  async addProgram(
-    @Args("input") input: ProgramInput,
-    @AuthUser() user: UserEntity
-  ): Promise<ProgramDto> {
+  @UseGuards(AdminGuard)
+  async addProgram(@Args("input") input: ProgramInput): Promise<ProgramDto> {
     const specialty = await this.specialtiesService.getSpecialtyById(
       input.specialtyId
     );
 
     return this.programsService.createProgram(input, specialty);
+  }
+  
+  @Mutation(() => ProgramDto)
+  @UseGuards(AdminGuard)
+  async editProgram(
+    @Args("input") input: EditProgramInput
+  ): Promise<ProgramDto> {
+    const specialty = await this.specialtiesService.getSpecialtyById(
+      input.specialtyId
+    );
+
+    return this.programsService.editProgram(input, specialty);
   }
 }

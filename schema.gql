@@ -239,6 +239,7 @@ type SpecialtyDto {
 type ProgramDto {
   uid: String!
   title: String!
+  score: Float
   specialty: SpecialtyDto!
   fullTimePlaces: Float
   fullTimeMeta: PlacesMeta
@@ -284,6 +285,7 @@ type ProgramSubjectDto {
 type ProgramWithSubjectsDto {
   uid: String!
   title: String!
+  score: Float
   specialty: SpecialtyDto!
   fullTimePlaces: Float
   fullTimeMeta: PlacesMeta
@@ -495,6 +497,7 @@ type Mutation {
   addMajor(input: MajorInput!): MajorDto!
   addSpecialty(input: SpecialtyInput!): SpecialtyDto!
   addProgram(input: ProgramInput!): ProgramDto!
+  editProgram(input: EditProgramInput!): ProgramDto!
   createUserTag(input: UserTagInput!): UserTagDto!
   removeUserTag(input: UserTagInput!): UserTagResultDto!
   createEventTag(input: EventTagInput!): EventTagDto!
@@ -656,6 +659,7 @@ input SpecialtyInput {
 
 input ProgramInput {
   title: String!
+  score: Float
   specialtyId: String!
   fullTimePlaces: Float
   fullTimeMeta: PlacesMeta
@@ -677,6 +681,33 @@ input ProgramInput {
   graduates: String
   unit: String
   supervisor: String
+}
+
+input EditProgramInput {
+  title: String!
+  score: Float
+  specialtyId: String!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
+  fullTimeForm: Boolean!
+  mixedForm: Boolean!
+  extramuralForm: Boolean!
+  degree: ProgramDegree!
+  studyPeriod: String!
+  languages: String!
+  description: String
+  advantages: String
+  partners: String
+  projectsAndPractices: String
+  leadProfessors: String
+  graduates: String
+  unit: String
+  supervisor: String
+  uid: String!
 }
 
 input UserTagInput {
