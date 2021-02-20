@@ -28,6 +28,7 @@ import { VisitsModule } from './visits/visits.module';
 import { UserEventsModule } from './user-events/user-events.module';
 import { PreuniversityRequestsModule } from './preuniversity-requests/preuniversity-requests.module';
 import { GuidancesModule } from './guidances/guidances.module';
+import { CompetitionsModule } from './competitions/competitions.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { GuidancesModule } from './guidances/guidances.module';
     UserEventsModule,
     PreuniversityRequestsModule,
     GuidancesModule,
+    CompetitionsModule,
     AuthModule
   ],
   controllers: [AppController],

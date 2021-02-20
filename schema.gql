@@ -380,6 +380,24 @@ type GuidanceDto {
   link: String
 }
 
+type CompetitionDto {
+  uid: String!
+  title: String!
+  date: String!
+  target: String!
+  link: String
+  group: CompetitionGroup!
+}
+
+enum CompetitionGroup {
+  january
+  february
+  march
+  april
+  may
+  other
+}
+
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
@@ -438,6 +456,8 @@ type Query {
   preuniversityRequest(uid: ID!): PreuniversityRequestDto!
   guidances: [GuidanceDto!]!
   guidance(uid: ID!): GuidanceDto!
+  competitions: [CompetitionDto!]!
+  competition(uid: ID!): CompetitionDto!
 }
 
 input ModuleEventsInput {
@@ -487,6 +507,9 @@ type Mutation {
   addGuidance(input: GuidanceInput!): GuidanceDto!
   editGuidance(input: EditGuidanceInput!): GuidanceDto!
   populateGuidances: GuidanceDto!
+  addCompetition(input: CompetitionInput!): CompetitionDto!
+  editCompetition(input: EditCompetitionInput!): CompetitionDto!
+  populateCompetitions: CompetitionDto!
 }
 
 input CreateUserInput {
@@ -705,6 +728,23 @@ input EditGuidanceInput {
   date: String!
   description: String!
   link: String
+}
+
+input CompetitionInput {
+  title: String!
+  date: String!
+  target: String!
+  link: String
+  group: CompetitionGroup!
+}
+
+input EditCompetitionInput {
+  uid: String!
+  title: String!
+  date: String!
+  target: String!
+  link: String
+  group: CompetitionGroup!
 }
 
 type Subscription {
