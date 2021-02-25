@@ -7,6 +7,7 @@ import { SpecialtyEntity } from "../specialties/entities/specialty.entity";
 import { SpecialtiesService } from "../specialties/specialties.service";
 import { PlacesMeta } from "../majors/entities/major.entity";
 import { EditProgramInput } from "./inputs/edit-program.input";
+import { EditProgramScoreInput } from "./inputs/edit-program-score.input";
 
 const pgms = {};
 
@@ -111,31 +112,16 @@ export class ProgramsService {
       program.supervisor = data.supervisor;
     }
 
-    return await this.programsRepository.save({
-      title: data.title,
-      score: data.score,
-      specialty: specialty,
-      fullTimePlaces: data.fullTimePlaces,
-      fullTimeMeta: data.fullTimeMeta,
-      mixedPlaces: data.mixedPlaces,
-      mixedMeta: data.mixedMeta,
-      extramuralPlaces: data.extramuralPlaces,
-      extramuralMeta: data.extramuralMeta,
-      fullTimeForm: data.fullTimeForm,
-      mixedForm: data.mixedForm,
-      extramuralForm: data.extramuralForm,
-      degree: data.degree,
-      studyPeriod: data.studyPeriod,
-      languages: data.languages,
-      description: data.description,
-      advantages: data.advantages,
-      partners: data.partners,
-      projectsAndPractices: data.projectsAndPractices,
-      leadProfessors: data.leadProfessors,
-      graduates: data.graduates,
-      unit: data.unit,
-      supervisor: data.supervisor,
-    });
+    return await this.programsRepository.save(program);
+  }
+
+  async editProgramScore(data: EditProgramScoreInput): Promise<ProgramEntity> {
+    const program = await this.programsRepository.findOne(data.uid);
+
+    if (data.score) {
+      program.score = data.score;
+    }
+    return await this.programsRepository.save(program);
   }
 
   async populate() {

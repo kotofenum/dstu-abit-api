@@ -13,6 +13,7 @@ import { ProgramsOfSpecialtyInput } from "./inputs/programsOfSpecialty.input";
 import { ProgramWithSubjectsDto } from "./dto/program-with-subjects.dto";
 import { AdminGuard } from "src/guards/admin.guard";
 import { EditProgramInput } from "./inputs/edit-program.input";
+import { EditProgramScoreInput } from "./inputs/edit-program-score.input";
 
 @Resolver(() => ProgramEntity)
 export class ProgramsResolver {
@@ -54,7 +55,7 @@ export class ProgramsResolver {
 
     return this.programsService.createProgram(input, specialty);
   }
-  
+
   @Mutation(() => ProgramDto)
   @UseGuards(AdminGuard)
   async editProgram(
@@ -65,5 +66,13 @@ export class ProgramsResolver {
     );
 
     return this.programsService.editProgram(input, specialty);
+  }
+
+  @Mutation(() => ProgramDto)
+  @UseGuards(AdminGuard)
+  async editProgramScore(
+    @Args("input") input: EditProgramScoreInput
+  ): Promise<ProgramDto> {
+    return this.programsService.editProgramScore(input);
   }
 }
