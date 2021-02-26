@@ -56,6 +56,7 @@ export class EventsService {
     }
     if (data.limit) {
       event.limit = data.limit;
+      event.placesLeft = data.limit
     }
     if (data.link) {
       event.link = data.link;

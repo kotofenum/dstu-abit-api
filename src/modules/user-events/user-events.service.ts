@@ -21,7 +21,7 @@ export class UserEventsService {
     const event = await this.eventsService.getEventById(data.eventId);
 
     const userEvent = await this.userEventsRepository.findOne({
-      where: { event: event, attending: true },
+      where: { user: user, event: event, attending: true },
       order: { dateCreated: "DESC" },
     });
 
@@ -43,7 +43,7 @@ export class UserEventsService {
     const event = await this.eventsService.getEventById(data.eventId);
 
     const userEvent = await this.userEventsRepository.findOne({
-      where: { event: event },
+      where: { user: user, event: event },
       order: { dateCreated: "DESC" },
     });
 
