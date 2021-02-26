@@ -56,7 +56,7 @@ export class EventsService {
     }
     if (data.limit) {
       event.limit = data.limit;
-      event.placesLeft = data.limit
+      event.placesLeft = data.limit;
     }
     if (data.link) {
       event.link = data.link;
@@ -92,7 +92,13 @@ export class EventsService {
 
   async getActualEvents(): Promise<EventEntity[]> {
     return await this.eventsRepository.find({
-      where: { startsAt: MoreThan(moment().startOf('day').toDate()) },
+      where: {
+        startsAt: MoreThan(
+          moment()
+            .startOf("day")
+            .toDate()
+        ),
+      },
     });
   }
 
@@ -108,6 +114,19 @@ export class EventsService {
 
   async getEventsByModule(module: ModuleType): Promise<EventEntity[]> {
     return await this.eventsRepository.find({ where: { module: module } });
+  }
+
+  async getActualEventsByModule(module: ModuleType): Promise<EventEntity[]> {
+    return await this.eventsRepository.find({
+      where: {
+        module: module,
+        startsAt: MoreThan(
+          moment()
+            .startOf("day")
+            .toDate()
+        ),
+      },
+    });
   }
 
   async getEventByTitle(title: string): Promise<EventEntity> {

@@ -25,7 +25,7 @@ export class EventsResolver {
   async eventsForModule(
     @Args("input") input: ModuleEventsInput
   ): Promise<EventDto[]> {
-    return this.eventsService.getEventsByModule(input.module);
+    return this.eventsService.getActualEventsByModule(input.module);
   }
 
   @Query(() => EventDto)
