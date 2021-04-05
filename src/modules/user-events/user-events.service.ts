@@ -68,6 +68,13 @@ export class UserEventsService {
     return await this.userEventsRepository.find({ where: { user: user, attending: true } });
   }
 
+  async getUserUsersOfEvent(eventId: string): Promise<UserEntity[]> {
+    const event = await this.eventsService.getEventById(eventId);
+    const userEvents = await this.userEventsRepository.find({ where: { event: event, attending: true } });
+    const users = userEvents.map(userEvent => userEvent.user)
+    return users
+  }
+
   async getUserEventById(id: string): Promise<UserEventEntity> {
     return await this.userEventsRepository.findOne(id);
   }

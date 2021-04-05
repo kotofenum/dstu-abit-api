@@ -455,6 +455,7 @@ type Query {
   userEvents: [UserEventDto!]!
   myUserEvents: [UserEventDto!]!
   eventsOfUser(uid: ID!): [UserEventDto!]!
+  usersOfEvent(uid: ID!): [UserDto!]!
   userEvent(uid: ID!): UserEventDto!
   preuniversityRequests: [PreuniversityRequestDto!]!
   preuniversityRequest(uid: ID!): PreuniversityRequestDto!

@@ -8,6 +8,7 @@ import { UserEntity } from "../users/entities/user.entity";
 import { UseGuards } from "@nestjs/common";
 import { AuthGuard } from "src/guards/auth.guard";
 import { UsersService } from "../users/users.service";
+import { UserDto } from "../users/dto/user.dto";
 
 @Resolver(() => UserEventEntity)
 export class UserEventsResolver {
@@ -32,6 +33,12 @@ export class UserEventsResolver {
     return this.userEventsService.getUserEventsForUser(user);
   }
 
+  @Query(() => [UserDto])
+  @UseGuards(AuthGuard)
+  async usersOfEvent(@Args("uid", { type: () => ID }) uid: string): Promise<UserDto[]> {
+    return this.userEventsService.getUserUsersOfEvent(uid);
+  }
+
   @Query(() => UserEventDto)
   async userEvent(
     @Args("uid", { type: () => ID }) uid: string
@@ -45,7 +52,6 @@ export class UserEventsResolver {
     @Args("input") input: UserEventInput,
     @AuthUser() user: UserEntity
   ): Promise<UserEventDto> {
-    console.log("visit usa", user);
     return this.userEventsService.visitEvent(input, user);
   }
 
