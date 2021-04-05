@@ -9,10 +9,11 @@ import { AuthUser } from "src/decorators/auth-user.decorator";
 import { UserEntity } from "../users/entities/user.entity";
 import { ConnectedUserTagsDto } from "./dto/connected-user-tags.dto";
 import { UserTagResultDto } from "./dto/user-tag-result.dto";
+import { UsersService } from "../users/users.service";
 
 @Resolver(() => UserTagEntity)
 export class UserTagsResolver {
-  constructor(private readonly userTagsService: UserTagsService) {}
+  constructor(private readonly userTagsService: UserTagsService, private readonly usersService: UsersService) {}
 
   @Query(() => [UserTagDto])
   async userTags(): Promise<UserTagDto[]> {
@@ -24,6 +25,15 @@ export class UserTagsResolver {
   async myUserTags(
     @AuthUser() user: UserEntity
   ): Promise<ConnectedUserTagsDto> {
+    return this.userTagsService.getUserTags(user);
+  }
+
+  @Query(() => ConnectedUserTagsDto)
+  @UseGuards(AuthGuard)
+  async tagsOfUser(
+    @Args("uid", { type: () => ID }) uid: string
+  ): Promise<ConnectedUserTagsDto> {
+    const user = await this.usersService.getUserById(uid)
     return this.userTagsService.getUserTags(user);
   }
 

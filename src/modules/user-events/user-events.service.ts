@@ -11,7 +11,7 @@ export class UserEventsService {
   constructor(
     @InjectRepository(UserEventEntity)
     private readonly userEventsRepository: Repository<UserEventEntity>,
-    private readonly eventsService: EventsService
+    private readonly eventsService: EventsService,
   ) {}
 
   async visitEvent(

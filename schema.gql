@@ -440,6 +440,7 @@ type Query {
   programsOfSpecialty(input: ProgramsOfSpecialtyInput!): [ProgramDto!]!
   userTags: [UserTagDto!]!
   myUserTags: ConnectedUserTagsDto!
+  tagsOfUser(uid: ID!): ConnectedUserTagsDto!
   userTag(uid: ID!): ProgramSubjectDto!
   eventTags: [EventTagDto!]!
   eventsForUserTags: [EventDto!]!
@@ -453,6 +454,7 @@ type Query {
   visit(uid: ID!): VisitDto!
   userEvents: [UserEventDto!]!
   myUserEvents: [UserEventDto!]!
+  eventsOfUser(uid: ID!): [UserEventDto!]!
   userEvent(uid: ID!): UserEventDto!
   preuniversityRequests: [PreuniversityRequestDto!]!
   preuniversityRequest(uid: ID!): PreuniversityRequestDto!

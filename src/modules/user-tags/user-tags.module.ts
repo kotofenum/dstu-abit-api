@@ -8,16 +8,18 @@ import { AuthModule } from "../auth/auth.module";
 import { MajorsModule } from "../majors/majors.module";
 import { SpecialtiesModule } from "../specialties/specialties.module";
 import { ProgramsModule } from "../programs/programs.module";
+import { UsersService } from "../users/users.service";
+import { UserEntity } from "../users/entities/user.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserTagEntity]),
+    TypeOrmModule.forFeature([UserTagEntity, UserEntity]),
     AuthModule,
     MajorsModule,
     SpecialtiesModule,
     ProgramsModule,
   ],
-  providers: [UserTagsResolver, UserTagsService, AuthGuard],
+  providers: [UserTagsResolver, UserTagsService, UsersService, AuthGuard],
   exports: [UserTagsService, AuthGuard],
 })
 export class UserTagsModule {}

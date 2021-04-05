@@ -7,10 +7,12 @@ import { AuthUser } from "src/decorators/auth-user.decorator";
 import { UserEntity } from "../users/entities/user.entity";
 import { UseGuards } from "@nestjs/common";
 import { AuthGuard } from "src/guards/auth.guard";
+import { UsersService } from "../users/users.service";
 
 @Resolver(() => UserEventEntity)
 export class UserEventsResolver {
-  constructor(private readonly userEventsService: UserEventsService) {}
+  constructor(private readonly userEventsService: UserEventsService,
+    private readonly usersService: UsersService) {}
 
   @Query(() => [UserEventDto])
   async userEvents(): Promise<UserEventDto[]> {
@@ -20,6 +22,13 @@ export class UserEventsResolver {
   @Query(() => [UserEventDto])
   @UseGuards(AuthGuard)
   async myUserEvents(@AuthUser() user: UserEntity): Promise<UserEventDto[]> {
+    return this.userEventsService.getUserEventsForUser(user);
+  }
+
+  @Query(() => [UserEventDto])
+  @UseGuards(AuthGuard)
+  async eventsOfUser(@Args("uid", { type: () => ID }) uid: string): Promise<UserEventDto[]> {
+    const user = await this.usersService.getUserById(uid)
     return this.userEventsService.getUserEventsForUser(user);
   }
 
