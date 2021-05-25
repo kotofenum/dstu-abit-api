@@ -9,7 +9,7 @@ import { CreateUserInput } from "./inputs/create-user.input";
 import { CodesService } from "../codes/codes.service";
 import { CodeEntity } from "../codes/entities/code.entity";
 import { UpdateUserInput } from "./inputs/update-user.input";
-import { EditUserInput } from "./inputs/edit-user.input";
+import { EditUserInput } from "./inputs/edit-user.input"
 var jwt = require("jsonwebtoken");
 
 @Injectable()
@@ -118,14 +118,6 @@ export class UsersService {
 
   async getUsers(): Promise<UserEntity[]> {
     return await this.usersRepository.find();
-  }
-
-  async getUsersWithInterests(): Promise<UserEntity[]> {
-    const users = await this.usersRepository.find({
-      relations: ["userEvents"],
-    });
-
-    return users;
   }
 
   async getUserByPhone(phone: string): Promise<UserEntity> {

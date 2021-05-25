@@ -26,13 +26,15 @@ import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
 import { CreateUserInput } from "./inputs/create-user.input";
 import { UpdateUserInput } from "./inputs/update-user.input";
 import { EditUserInput } from "./inputs/edit-user.input";
+import { UsersWithInterestsService } from './users-with-interests.service';
 
 @Resolver(() => UserEntity)
 export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
     private readonly walletsService: WalletsService,
-    private readonly transactionsService: TransactionsService
+    private readonly transactionsService: TransactionsService,
+    private readonly usersWithInterestsService: UsersWithInterestsService,
   ) {}
 
   @Query(() => [UserDto])
@@ -47,7 +49,7 @@ export class UsersResolver {
 
   @Query(() => [UserWithInterestsDto])
   async usersWithInterests(): Promise<UserWithInterestsDto[]> {
-    return this.usersService.getUsersWithInterests();
+    return this.usersWithInterestsService.getUsersWithInterests();
   }
 
   @Query(() => UserDto)

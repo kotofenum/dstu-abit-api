@@ -1,6 +1,9 @@
 import { UserEventDto } from './../../user-events/dto/user-event.dto';
 import { ObjectType, Field } from "@nestjs/graphql";
 import { AccountType } from "../entities/user.entity";
+import { MajorDto } from 'src/modules/majors/dto/major.dto';
+import { SpecialtyDto } from 'src/modules/specialties/dto/specialty.dto';
+import { ProgramDto } from 'src/modules/programs/dto/program.dto';
 
 @ObjectType()
 export class UserWithInterestsDto {
@@ -63,4 +66,13 @@ export class UserWithInterestsDto {
 
   @Field(() => [UserEventDto])
   readonly userEvents: UserEventDto[];
+
+  @Field(() => [MajorDto])
+  readonly majors: MajorDto[];
+
+  @Field(() => [SpecialtyDto])
+  readonly specialties: SpecialtyDto[];
+
+  @Field(() => [ProgramDto])
+  readonly programs: ProgramDto[];
 }

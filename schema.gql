@@ -86,6 +86,73 @@ type UserEventDto {
   attending: Boolean!
 }
 
+type MajorDto {
+  uid: String!
+  title: String!
+  code: String!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
+}
+
+enum PlacesMeta {
+  unobtainable
+  undeveloped
+  hasDegree
+  secondaryMajor
+  shortTerm
+  unknown
+}
+
+type SpecialtyDto {
+  uid: String!
+  title: String!
+  code: String!
+  major: MajorDto!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
+}
+
+type ProgramDto {
+  uid: String!
+  title: String!
+  score: Float
+  specialty: SpecialtyDto!
+  fullTimePlaces: Float
+  fullTimeMeta: PlacesMeta
+  mixedPlaces: Float
+  mixedMeta: PlacesMeta
+  extramuralPlaces: Float
+  extramuralMeta: PlacesMeta
+  fullTimeForm: Boolean!
+  mixedForm: Boolean!
+  extramuralForm: Boolean!
+  degree: ProgramDegree!
+  studyPeriod: String!
+  languages: String!
+  description: String
+  advantages: String
+  partners: String
+  projectsAndPractices: String
+  leadProfessors: String
+  graduates: String
+  unit: String
+  supervisor: String
+}
+
+enum ProgramDegree {
+  bachelor
+  certified
+  master
+}
+
 type UserWithInterestsDto {
   uid: String!
   firstName: String
@@ -107,6 +174,9 @@ type UserWithInterestsDto {
   isAdmin: Boolean!
   picture: String
   userEvents: [UserEventDto!]!
+  majors: [MajorDto!]!
+  specialties: [SpecialtyDto!]!
+  programs: [ProgramDto!]!
 }
 
 type WalletDto {
@@ -230,73 +300,6 @@ type UserExerciseDto {
   frames: JSON
   startedAt: DateTime
   endedAt: DateTime
-}
-
-type MajorDto {
-  uid: String!
-  title: String!
-  code: String!
-  fullTimePlaces: Float
-  fullTimeMeta: PlacesMeta
-  mixedPlaces: Float
-  mixedMeta: PlacesMeta
-  extramuralPlaces: Float
-  extramuralMeta: PlacesMeta
-}
-
-enum PlacesMeta {
-  unobtainable
-  undeveloped
-  hasDegree
-  secondaryMajor
-  shortTerm
-  unknown
-}
-
-type SpecialtyDto {
-  uid: String!
-  title: String!
-  code: String!
-  major: MajorDto!
-  fullTimePlaces: Float
-  fullTimeMeta: PlacesMeta
-  mixedPlaces: Float
-  mixedMeta: PlacesMeta
-  extramuralPlaces: Float
-  extramuralMeta: PlacesMeta
-}
-
-type ProgramDto {
-  uid: String!
-  title: String!
-  score: Float
-  specialty: SpecialtyDto!
-  fullTimePlaces: Float
-  fullTimeMeta: PlacesMeta
-  mixedPlaces: Float
-  mixedMeta: PlacesMeta
-  extramuralPlaces: Float
-  extramuralMeta: PlacesMeta
-  fullTimeForm: Boolean!
-  mixedForm: Boolean!
-  extramuralForm: Boolean!
-  degree: ProgramDegree!
-  studyPeriod: String!
-  languages: String!
-  description: String
-  advantages: String
-  partners: String
-  projectsAndPractices: String
-  leadProfessors: String
-  graduates: String
-  unit: String
-  supervisor: String
-}
-
-enum ProgramDegree {
-  bachelor
-  certified
-  master
 }
 
 type SubjectDto {

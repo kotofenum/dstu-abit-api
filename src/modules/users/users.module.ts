@@ -11,6 +11,15 @@ import { TransactionsService } from "../transactions/transactions.service";
 import { TransactionEntity } from "../transactions/entities/transaction.entity";
 import { AuthModule } from "../auth/auth.module";
 import { CodesModule } from "../codes/codes.module";
+import { UserTagEntity } from "../user-tags/entities/user-tag.entity";
+import { UserTagsService } from "../user-tags/user-tags.service";
+import { MajorsService } from "../majors/majors.service";
+import { SpecialtiesService } from "../specialties/specialties.service";
+import { ProgramsService } from "../programs/programs.service";
+import { MajorEntity } from "../majors/entities/major.entity";
+import { SpecialtyEntity } from "../specialties/entities/specialty.entity";
+import { ProgramEntity } from "../programs/entities/program.entity";
+import { UsersWithInterestsService } from "./users-with-interests.service";
 
 @Module({
   imports: [
@@ -29,10 +38,10 @@ import { CodesModule } from "../codes/codes.module";
     //   },
     // }),
     AuthModule,
-    TypeOrmModule.forFeature([UserEntity, WalletEntity, TransactionEntity]),
-    CodesModule
+    TypeOrmModule.forFeature([UserEntity, WalletEntity, TransactionEntity, UserTagEntity, MajorEntity, SpecialtyEntity, ProgramEntity]),
+    CodesModule,
   ],
-  providers: [UsersResolver, UsersService, WalletsService, TransactionsService],
+  providers: [UsersResolver, UsersService, WalletsService, UsersWithInterestsService, TransactionsService, UserTagsService, MajorsService, SpecialtiesService, ProgramsService],
   exports: [UsersService],
 })
 export class UsersModule {}
