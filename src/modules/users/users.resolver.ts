@@ -1,3 +1,4 @@
+import { UserWithInterestsDto } from './dto/user-with-interests.dto';
 import { UsersService } from "./users.service";
 import { UserEntity } from "./entities/user.entity";
 import {
@@ -42,6 +43,11 @@ export class UsersResolver {
   @Query(() => UserDto)
   async user(@Args("uid", { type: () => ID }) uid: string): Promise<UserDto> {
     return this.usersService.getUserById(uid);
+  }
+
+  @Query(() => [UserWithInterestsDto])
+  async usersWithInterests(): Promise<UserWithInterestsDto[]> {
+    return this.usersService.getUsersWithInterests();
   }
 
   @Query(() => UserDto)

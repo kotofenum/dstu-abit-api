@@ -18,6 +18,7 @@ import {
   JoinColumn,
 } from "typeorm";
 import { PreuniversityRequestEntity } from 'src/modules/preuniversity-requests/entities/preuniversity-request.entity';
+import { UserEventEntity } from 'src/modules/user-events/entities/user-event.entity';
 
 
 export enum AccountType {
@@ -180,6 +181,16 @@ export class UserEntity {
   )
   @JoinColumn()
   codes: CodeEntity[];
+
+  @OneToMany(
+    () => UserEventEntity,
+    (userEvent) => userEvent.user,
+    {
+      cascade: true,
+    }
+  )
+  @JoinColumn()
+  userEvents: UserEventEntity[];
 
   @CreateDateColumn()
   dateCreated: Date;

@@ -2,6 +2,55 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type EventDto {
+  uid: String!
+  title: String!
+  description: String
+  type: EventType!
+  module: ModuleType!
+  faculty: String
+  link: String
+  reward: Float
+  limit: Float
+  placesLeft: Float
+  userIsGoing: Boolean
+  startsAt: DateTime!
+  endsAt: DateTime!
+}
+
+enum EventType {
+  presentation
+  discussion
+  roundTable
+  webinar
+  workshop
+  masterClass
+  lecture
+  quiz
+  video
+  tour
+  olympiad
+  consultation
+  meeting
+  presentationQuiz
+  roomToor
+}
+
+enum ModuleType {
+  dstuOnline
+  talents
+  helloFaculty
+  admissionsCampaign
+  preUniversity
+  sportLeisureMore
+  futureTour
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type UserDto {
   uid: String!
   firstName: String
@@ -30,10 +79,35 @@ enum AccountType {
   teacher
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
+type UserEventDto {
+  uid: String!
+  user: UserDto!
+  event: EventDto!
+  attending: Boolean!
+}
+
+type UserWithInterestsDto {
+  uid: String!
+  firstName: String
+  lastName: String
+  patronym: String
+  type: AccountType!
+  birthDate: DateTime
+  country: String
+  locality: String
+  email: String
+  pwd: String
+  school: String
+  position: String
+  child: String
+  course: String
+  phone: String!
+  emailVerified: Boolean!
+  phoneVerified: Boolean!
+  isAdmin: Boolean!
+  picture: String
+  userEvents: [UserEventDto!]!
+}
 
 type WalletDto {
   uid: String!
@@ -156,50 +230,6 @@ type UserExerciseDto {
   frames: JSON
   startedAt: DateTime
   endedAt: DateTime
-}
-
-type EventDto {
-  uid: String!
-  title: String!
-  description: String
-  type: EventType!
-  module: ModuleType!
-  faculty: String
-  link: String
-  reward: Float
-  limit: Float
-  placesLeft: Float
-  userIsGoing: Boolean
-  startsAt: DateTime!
-  endsAt: DateTime!
-}
-
-enum EventType {
-  presentation
-  discussion
-  roundTable
-  webinar
-  workshop
-  masterClass
-  lecture
-  quiz
-  video
-  tour
-  olympiad
-  consultation
-  meeting
-  presentationQuiz
-  roomToor
-}
-
-enum ModuleType {
-  dstuOnline
-  talents
-  helloFaculty
-  admissionsCampaign
-  preUniversity
-  sportLeisureMore
-  futureTour
 }
 
 type MajorDto {
@@ -359,13 +389,6 @@ type VisitDto {
   event: EventDto!
 }
 
-type UserEventDto {
-  uid: String!
-  user: UserDto!
-  event: EventDto!
-  attending: Boolean!
-}
-
 type PreuniversityRequestDto {
   uid: String!
   category: String!
@@ -403,6 +426,7 @@ enum CompetitionGroup {
 type Query {
   users: [UserDto!]!
   user(uid: ID!): UserDto!
+  usersWithInterests: [UserWithInterestsDto!]!
   me: UserDto!
   code(uid: ID!): CodeDto!
   wallets: [WalletDto!]!

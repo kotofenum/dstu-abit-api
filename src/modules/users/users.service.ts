@@ -120,6 +120,14 @@ export class UsersService {
     return await this.usersRepository.find();
   }
 
+  async getUsersWithInterests(): Promise<UserEntity[]> {
+    const users = await this.usersRepository.find({
+      relations: ["userEvents"],
+    });
+
+    return users;
+  }
+
   async getUserByPhone(phone: string): Promise<UserEntity> {
     return await this.usersRepository.findOne({ where: { phone: phone } });
   }
